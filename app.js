@@ -7,7 +7,7 @@ const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => res.send("Hello, world!"));
+app.get("/", (req, res) => res.render("index"));
 
 const PORT = 3000;
 app.listen(PORT, (error) => {
