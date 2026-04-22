@@ -7,7 +7,8 @@ const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => res.render("index"));
+
+const indexRouter = require('./routes/indexRouter')
 
 const PORT = 3000;
 app.listen(PORT, (error) => {
@@ -19,3 +20,8 @@ app.listen(PORT, (error) => {
   }
   console.log(`My first Express app - listening on port ${PORT}!`);
 });
+
+app.use("/", indexRouter);
+app.use((req,res)=>{
+    res.status(400).send('Page not found')
+})
