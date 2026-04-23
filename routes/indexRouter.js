@@ -1,11 +1,8 @@
 const {Router}  = require("express");
-
+const {getUsernames} = require("../controllers/queryUsername")
 const indexRouter = Router();
 
-indexRouter.get("/",  (req, res)=>{
-    console.log("usernames will be logged here - wip");
-    res.send("hello world")
-})
+indexRouter.get("/",  getUsernames)
 
 indexRouter.get('/new', (req, res)=>{
     console.log("username will be formmed")
