@@ -2,11 +2,11 @@ const db = require("../db/queries");
 
 async function getUsernames(req, res) {
 
-  res.render('index')
-  /*
-  const usernames = await db.getALLUsernames();
+  //res.render('index')
+  
+  const usernames = await db.getALLDirectorNames();
   console.log("Usernames: ", usernames);
-  res.send("Usernames: " + usernames.map(user => user.username).join(", "));*/
+  res.send("Usernames: " + usernames.map(user => user.directorname).join(", "));
 }
 
 async function createUsernameGet(req, res) {
