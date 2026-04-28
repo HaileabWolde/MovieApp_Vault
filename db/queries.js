@@ -5,7 +5,7 @@ async function getALLDirectorNames(){
     return rows;
 }
 async function getALLMovies(){
-    const {rows} = await pool.query("SELECT * FROM  Movies");
+    const {rows} = await pool.query("SELECT * FROM  Movies JOIN Directors ON Movies.director_id = Directors.id");
     return rows;
 }
 async function insertUsername(username){
