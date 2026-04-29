@@ -22,9 +22,9 @@
         </div>
 
         <!-- Main Content -->
-        <div class="bg-zinc-100 overflow-auto p-8 flex  flex-col gap-4">
-                <div class="bg-white p-12 shadow-xl rounded-xl h-1/5 border-2">
-                    <h1>Movies</h1>
+        <div class="bg-zinc-100 overflow-auto pt-4 px-4 pb-2 flex  flex-col gap-8">
+                <div class="bg-white pb-8 shadow-xl rounded-xl  border-2 flex flex-col justify-center py-8 px-3">
+                   <h1 class="text-3xl font-bold ">Movies</h1>
                     <p>Showing <%=movies.length%> Movies</p>
                 </div>
                 <div class="bg-white h-full shadow-xl rounded-xl p-4 border-2">
@@ -41,8 +41,8 @@
                                    %>
                                    <tr class="bg-gray-50 border-b cursor-pointer">
                                         <td class="px-6 py-3">
-                                            <%=movie.moviename.toUpperCase()%>
-                                            <br/>
+                                            <p class="font-semibold"><%=movie.moviename.toUpperCase()%></p>
+                                           
                                             By <%=movie.directorname%>
                                         </td>
                                         <td class="px-6 py-3">
