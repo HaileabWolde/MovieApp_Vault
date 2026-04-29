@@ -19,10 +19,44 @@
         </div>
 
         <!-- Main Content -->
-        <div class="bg-zinc-100 overflow-auto p-8">
-                <div class="bg-white p-12 shadow-xl rounded-xl h-1/5">
+        <div class="bg-zinc-100 overflow-auto p-8 flex  flex-col gap-4">
+                <div class="bg-white p-12 shadow-xl rounded-xl h-1/5 border-2">
                     <h1>Movies</h1>
                     <p>Showing <%=movies.length%> Movies</p>
+                </div>
+                <div class="bg-white h-full shadow-xl rounded-xl p-4 border-2">
+                      <table class="min-w-full min-h-full">
+                        <thead class="bg-gray-50 border-b">
+                                 <tr >
+                                <th>Title & Director</th>
+                                <th>Geners</th>
+                                <th>Actions</th>
+                                 </tr>
+                        </thead>
+                           <tbody class="">
+                                <% movies.map((movie)=> {
+                                   %>
+                                   <tr class="bg-gray-50 border-b">
+                                        <td>
+                                            <%=movie.moviename%>
+                                            <br/>
+                                            By <%=movie.directorname%>
+                                        </td>
+                                        <td>
+                                            <h1>Adventures</h1>
+                                        </td>
+                                        <td>
+                                            <h1>Edit</h1>
+                                            <h2>Delete</h2>
+                                        </td>
+                                   </tr>
+                        
+                             <%
+                            }) %>
+                                
+                           </tbody>
+                            
+                    </table>
                 </div>
             <% /*movies.map((movie)=> {
                 %>
