@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta charset="UTF-8">
+     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
    
@@ -16,6 +18,7 @@
         <!-- Sidebar -->
         <div class="bg-white border-r-2 p-6 shadow-sm ">
             <h1 class="text-4xl font-bold ">Class</h1>
+             
         </div>
 
         <!-- Main Content -->
@@ -28,26 +31,29 @@
                       <table class="min-w-full min-h-full">
                         <thead class="bg-gray-50 border-b">
                                  <tr >
-                                <th>Title & Director</th>
-                                <th>Geners</th>
-                                <th>Actions</th>
+                                <th class="text-left px-6 py-3  font-semibold">Title & Director</th>
+                                <th class="text-left px-6 py-3 font-semibold">Geners</th>
+                                <th class="text-left px-6  font-semibold">Actions</th>
                                  </tr>
                         </thead>
                            <tbody class="">
                                 <% movies.map((movie)=> {
                                    %>
                                    <tr class="bg-gray-50 border-b cursor-pointer">
-                                        <td>
+                                        <td class="px-6 py-3">
                                             <%=movie.moviename.toUpperCase()%>
                                             <br/>
                                             By <%=movie.directorname%>
                                         </td>
-                                        <td>
+                                        <td class="px-6 py-3">
                                             <h1>Adventures</h1>
                                         </td>
-                                        <td>
-                                            <h1>Edit</h1>
-                                            <h2>Delete</h2>
+                                        <td class="">
+                                            <div class=" flex gap-4 items-center justify-center w-[50%]">
+                                                      <i class="fas fa-edit"></i>
+                                                 <i class="fa-solid fa-trash"></i>
+                                            </div>
+                                        
                                         </td>
                                    </tr>
                         
