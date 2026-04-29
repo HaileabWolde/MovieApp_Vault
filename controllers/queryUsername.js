@@ -16,6 +16,16 @@ async function getAllMovies(req, res){
     movies: movies 
   })
 }
+
+async function getSingleMovie(req, res){
+  const movieid = req.params.id
+  const singleMovie = await db.getSpecficMovies(movieid);
+  console.log("Movie:", singleMovie);
+  res.render('singleMovie', {
+    title: 'A Single Movie Detail',
+    singleMovie: singleMovie
+  })
+}
 async function createUsernameGet(req, res) {
   // render the form
 }
@@ -28,6 +38,7 @@ async function createUsernamePost(req, res) {
 
 module.exports = {
   getAllMovies,
+  getSingleMovie,
   getUsernames,
   createUsernameGet,
   createUsernamePost
