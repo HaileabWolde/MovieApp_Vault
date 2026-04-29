@@ -36,9 +36,9 @@
                            <tbody class="">
                                 <% movies.map((movie)=> {
                                    %>
-                                   <tr class="bg-gray-50 border-b">
+                                   <tr class="bg-gray-50 border-b cursor-pointer">
                                         <td>
-                                            <%=movie.moviename%>
+                                            <%=movie.moviename.toUpperCase()%>
                                             <br/>
                                             By <%=movie.directorname%>
                                         </td>
