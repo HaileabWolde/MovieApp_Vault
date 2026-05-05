@@ -4,6 +4,11 @@ async function getALLDirectorNames(){
     const { rows }  = await pool.query("SELECT * FROM directors");
     return rows;
 }
+
+async function getAllGeners(){
+    const {rows} = await pool.query("SELECT * FROM  genres")
+    return rows;
+}
 async function getALLMoviesWithDirectors(){
     const {rows} = await pool.query(`SELECT* 
         FROM movies JOIN movie_director ON movies.movieid = movie_director.movieid 
@@ -39,5 +44,6 @@ module.exports = {
      getAllMoviesWithGeneres,
     getSpecficMovies,
     getALLDirectorNames,
-    insertUsername,
+    getAllGeners,
+   
 }

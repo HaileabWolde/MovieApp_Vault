@@ -18,7 +18,16 @@ async function getAllMovies(req, res){
     generes: generes
   })
 }
-
+async function getAllGeners(req, res){
+  const geners = await db.getAllGeners()
+  console.log("geners", geners)
+  res.send("Fuck Off")
+}
+async function getALLDirector(req, res){
+  const director = await db.getALLDirectorNames()
+  console.log("Director", director)
+  res.send('Fuck Off')
+}
 async function getSingleMovie(req, res){
   const movieid = req.params.id
   const singleMovie = await db.getSpecficMovies(movieid);
@@ -42,6 +51,6 @@ module.exports = {
   getAllMovies,
   getSingleMovie,
   getUsernames,
-  createUsernameGet,
-  createUsernamePost
+  getALLDirector,
+getAllGeners
 };

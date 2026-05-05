@@ -83,8 +83,14 @@ WHERE movieid = 3;
 
 SELECT * FROM movies
 INSERT INTO movie_genre(genreid, movieid)
-VALUES (1, 1),
-		(12, 1)
+VALUES (7, 2),
+		(8, 2),
+		(2, 3),
+		(4, 3),
+		(6, 4),
+		(2, 4),
+		(2,5),
+		(11, 5)
 
 SELECT * FROM movie_genre
 SELECT * FROM genres
@@ -93,5 +99,6 @@ SELECT
 FROM genres
 JOIN movie_genre ON genres.genreid = movie_genre.genreid
 JOIN movies ON movie_genre.movieid = movies.movieid
+WHERE genres.genreid = 2
 
 		
