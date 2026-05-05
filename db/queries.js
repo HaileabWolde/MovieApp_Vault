@@ -5,11 +5,18 @@ async function getALLDirectorNames(){
     return rows;
 }
 async function getALLMovies(){
-    const {rows} = await pool.query("SELECT * FROM  Movies JOIN Directors ON Movies.director_id = Directors.id");
+    const {rows} = await pool.query(`SELECT* 
+        FROM movies JOIN movie_director ON movies.movieid = movie_director.movieid 
+        JOIN directors ON movie_director.directorid = directors.directorid`);
     return rows;
 }
 async function getSpecficMovies(id){
-    const {rows} = await pool.query(`SELECT * FROM Movies JOIN Directors ON Movies.director_id = Directors.id WHERE movieid = ${id}`)
+    const {rows} = await pool.query(`SELECT 
+    *
+FROM movies
+JOIN movie_director ON movies.movieid = movie_director.movieid
+JOIN directors ON movie_director.directorid = directors.directorid
+WHERE movies.movieid = ${id}`)
     return rows;
 }
 async function insertUsername(username){
