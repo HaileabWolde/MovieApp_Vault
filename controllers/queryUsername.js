@@ -9,11 +9,13 @@ async function getUsernames(req, res) {
   res.send("Usernames: " + directornames.map(user => user.directorname).join(", "));
 }
 async function getAllMovies(req, res){
-  const movies = await  db.getALLMovies()
-   console.log("movies: ", movies);
+  const movies = await  db.getALLMoviesWithDirectors()
+  const generes = await db.getAllMoviesWithGeneres()
+  
   res.render('index', { 
     title: 'Mini Messageboard',
-    movies: movies 
+    movies: movies,
+    generes: generes
   })
 }
 

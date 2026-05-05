@@ -4,10 +4,21 @@ async function getALLDirectorNames(){
     const { rows }  = await pool.query("SELECT * FROM directors");
     return rows;
 }
-async function getALLMovies(){
+async function getALLMoviesWithDirectors(){
     const {rows} = await pool.query(`SELECT* 
         FROM movies JOIN movie_director ON movies.movieid = movie_director.movieid 
         JOIN directors ON movie_director.directorid = directors.directorid`);
+   
+    return rows;
+}
+async function getAllMoviesWithGeneres(){
+     const {rows} = await pool.query(`
+        SELECT 
+    *
+FROM genres
+JOIN movie_genre ON genres.genreid = movie_genre.genreid
+JOIN movies ON movie_genre.movieid = movies.movieid
+        `)
     return rows;
 }
 async function getSpecficMovies(id){
@@ -24,7 +35,8 @@ async function insertUsername(username){
 }
 
 module.exports = {
-    getALLMovies,
+    getALLMoviesWithDirectors,
+     getAllMoviesWithGeneres,
     getSpecficMovies,
     getALLDirectorNames,
     insertUsername,
