@@ -17,7 +17,7 @@ async function getSingleGener(id){
         JOIN movie_genre ON genres.genreid = movie_genre.genreid
         JOIN movies ON movie_genre.movieid = movies.movieid
         WHERE genres.genreid = ${id}
-        `)
+        `);
     return rows
 }
 async function getALLMoviesWithDirectors(){

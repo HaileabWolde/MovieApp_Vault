@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+    
+    <title>Inventory Application</title>
+</head>
+<body class="m-0">
+    <div class="grid grid-cols-[20%_80%] h-screen w-full">
+        <%- include('../sideBar') %>
+       <div class="bg-zinc-100 overflow-auto pt-8 px-4 pb-2 flex  flex-col gap-8 min-h-screen">
+            <div class="bg-white  shadow-xl rounded-xl border-2 min-h-full">
+                      <h1 class="text-3xl font-bold "><%=genername%></h1>
+            </div>
+       </div>
+    </div>
+</html>
+<h1><%=singleGener.length%></h1>

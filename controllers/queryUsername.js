@@ -28,9 +28,14 @@ async function getAllGeners(req, res){
 }
 async function getSingleGener(req, res){
   const generid = req.params.id
+  const genername = req.params.genername
   const singleGener = await db.getSingleGener(generid)
-  console.log("singleGener", singleGener)
-  res.send("Fuck Off")
+
+  res.render("geners/eachgener", {
+    title: 'Mini Messageboard',
+    singleGener: singleGener,
+    genername: genername
+  })
 }
 async function getALLDirector(req, res){
   const director = await db.getALLDirectorNames()
