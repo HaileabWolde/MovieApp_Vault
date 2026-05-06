@@ -26,6 +26,12 @@ async function getAllGeners(req, res){
     geners: geners
   })
 }
+async function getSingleGener(req, res){
+  const generid = req.params.id
+  const singleGener = await db.getSingleGener(generid)
+  console.log("singleGener", singleGener)
+  res.send("Fuck Off")
+}
 async function getALLDirector(req, res){
   const director = await db.getALLDirectorNames()
   console.log("Director", director)
@@ -55,5 +61,6 @@ module.exports = {
   getSingleMovie,
   getUsernames,
   getALLDirector,
-getAllGeners
+getAllGeners,
+getSingleGener
 };
