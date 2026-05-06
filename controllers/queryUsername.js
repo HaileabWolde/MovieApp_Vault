@@ -21,7 +21,10 @@ async function getAllMovies(req, res){
 async function getAllGeners(req, res){
   const geners = await db.getAllGeners()
   console.log("geners", geners)
-  res.send("Fuck Off")
+  res.render('geners/gener', {
+    title: 'Mini Messageboard',
+    geners: geners
+  })
 }
 async function getALLDirector(req, res){
   const director = await db.getALLDirectorNames()
