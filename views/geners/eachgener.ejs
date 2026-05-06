@@ -6,48 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/style.css">
-    
     <title>Inventory Application</title>
 </head>
 <body class="m-0">
+
     <div class="grid grid-cols-[20%_80%] h-screen w-full">
         <%- include('../sideBar') %>
-       <div class="bg-zinc-100 overflow-auto pt-8 px-4 pb-2 flex  flex-col gap-8 min-h-screen">
-            <div class="bg-white  shadow-xl rounded-xl border-2  p-8 flex flex-col gap-4">
-                      <h1 class="text-3xl font-bold "><%=genername%></h1>
-                      <p class="text-gray-500">Movies In This Category </p>
-                      <table class="min-w-full border">
-                            <thead class="bg-gray-50 border-b">
-                                    <tr>
-                                        <th class="text-left px-6 py-3  font-semibold">Name</th>
-                                         <th class="text-left px-6 py-3 font-semibold">Type</th>
-                                         <th class="text-left px-6  font-semibold">Priority</th>
-                                    </tr>
-                            <tbody class="">
-                                <% singleGener.map((gener)=> {
-                                    %>
-                                    <tr class="bg-gray-50 border-b cursor-pointer">
-                                          <td class="px-6 py-3 ">
-                                            <p class="font-semibold"><%=gener.moviename%></p>
-                                          </td>  
-                                          <td class="px-6 py-3">
-                                            <p class="text-gray-500">
-                                                <%=gener.typeofmovie%>
-                                            </p>
-                                          </td>
-                                          <td class="px-6 py-3">
-                                            <p class="text-gray-500">
-                                                <%=gener.priority%>
-                                            </p>
-                                          </td>
-                                    </tr>
-                                    <%
-                                })%>
-                            </tbody>
-                            </thead>
-                      </table>
+
+        <div class="bg-zinc-100 overflow-auto pt-8 px-4 pb-2 flex flex-col gap-8 min-h-screen">
+            <div class="bg-white shadow-xl rounded-xl border-2 p-8 flex flex-col gap-4">
+                
+                <h1 class="text-3xl font-bold"><%= genername %></h1>
+                <p class="text-gray-500">Movies In This Category</p>
+
+                <table class="min-w-full border border-gray-200">
+                    <thead class="bg-gray-50 border-b">
+                        <tr>
+                            <th class="text-left px-6 py-3 font-semibold">Name</th>
+                            <th class="text-left px-6 py-3 font-semibold">Type</th>
+                            <th class="text-left px-6 py-3 font-semibold">Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (singleGener && singleGener.length > 0) { %>
+                            <% singleGener.forEach((movie) => { %>
+                                <tr class="border-b hover:bg-gray-50 cursor-pointer">
+                                    <td class="px-6 py-3">
+                                        <p class="font-semibold"><%= movie.moviename %></p>
+                                    </td>
+                                    <td class="px-6 py-3">
+                                        <p class="text-gray-500"><%= movie.typeofmovie %></p>
+                                    </td>
+                                    <td class="px-6 py-3">
+                                        <p class="text-gray-500"><%= movie.priority %></p>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="3" class="px-6 py-8 text-center">
+                                    <p class="text-gray-400 text-sm italic">
+                                        No Movies In This Genre
+                                    </p>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+
             </div>
-       </div>
+        </div>
     </div>
+
+</body>
 </html>
-<h1><%=singleGener.length%></h1>
