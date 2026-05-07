@@ -51,7 +51,13 @@ async function getDirectorMovies(req, res){
 
   const singleDirector = await db.getDirectorMovies(directorid)
   console.log("director", singleDirector)
-  res.send("Fuck U")
+  res.render(
+    'Director/singleDirector/eachdirector', {
+      title: 'Mini Messageboard',
+      singleDirector: singleDirector,
+      directorname: directorname
+    }
+  )
 }
 
 
