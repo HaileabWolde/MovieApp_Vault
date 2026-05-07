@@ -1,7 +1,10 @@
 const {Router}  = require("express");
 const { getAllMovies, 
     getSingleMovie,  getAllGeners, 
-    getALLDirector, getSingleGener} = require("../controllers/queryUsername")
+    getALLDirector, getSingleGener,
+    getDirectorMovies
+
+} = require("../controllers/queryUsername")
 const indexRouter = Router();
 
 
@@ -10,6 +13,7 @@ indexRouter.get('/movies/:id', getSingleMovie)
 indexRouter.get('/geners',  getAllGeners)
 indexRouter.get('/geners/:genername/:id', getSingleGener)
 indexRouter.get('/directors', getALLDirector)
+indexRouter.get('/director/:directorname/:id', getDirectorMovies)
 indexRouter.get('/new', (req, res)=>{
     console.log("username will be formmed")
 })

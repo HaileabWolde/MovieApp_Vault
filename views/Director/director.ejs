@@ -18,11 +18,11 @@
                     <p class="text-gray-500">Showing <%=director.length%> Directors</p>
                  </div>
                  <div class="bg-white  shadow-xl rounded-xl border-2 flex flex-col gap-2 justify-between cursor-pointer">
-                         <%director.map((d)=> {
+                         <%director.map((eachdirector)=> {
                         %>
                             <div class="flex justify-between border-b-2 px-4 py-4 items-center">
-                                <a  href="/director/<%=d.directorname%>/<%=d.directorid%>">
-                                    <h1 class="font-semibold"><%=d.directorname%></h1>
+                                <a  href="/director/<%=eachdirector.directorname.replace(/\s+/g, '')%>/<%=eachdirector.directorid%>">
+                                    <h1 class="font-semibold"><%=eachdirector.directorname%></h1>
                                  </a>
                
                               <div class="flex gap-4 items-center justify-center px-4">

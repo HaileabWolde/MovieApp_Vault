@@ -11,6 +11,8 @@ async function getAllMovies(req, res){
     generes: generes
   })
 }
+
+
 async function getAllGeners(req, res){
   const geners = await db.getAllGeners()
   console.log("geners", geners)
@@ -19,6 +21,8 @@ async function getAllGeners(req, res){
     geners: geners
   })
 }
+
+
 async function getSingleGener(req, res){
   const generid = req.params.id
   const genername = req.params.genername
@@ -30,6 +34,7 @@ async function getSingleGener(req, res){
     genername: genername
   })
 }
+
 async function getALLDirector(req, res){
   const director = await db.getALLDirectorNames()
   console.log("Director", director)
@@ -38,6 +43,18 @@ async function getALLDirector(req, res){
     director: director
   })
 }
+
+
+async function getDirectorMovies(req, res){
+  const directorid = req.params.id
+  const directorname = req.params.directorname
+
+  const singleDirector = await db.getDirectorMovies(directorid)
+  console.log("director", singleDirector)
+  res.send("Fuck U")
+}
+
+
 async function getSingleMovie(req, res){
   const movieid = req.params.id
   const singleMovie = await db.getSpecficMovies(movieid);
@@ -47,20 +64,14 @@ async function getSingleMovie(req, res){
     singleMovie: singleMovie
   })
 }
-async function createUsernameGet(req, res) {
-  // render the form
-}
 
-async function createUsernamePost(req, res) {
-  const { username } = req.body;
-  await db.insertUsername(username);
-  res.redirect("/");
-}
+
 
 module.exports = {
   getAllMovies,
   getSingleMovie,
   getALLDirector,
+  getDirectorMovies,
 getAllGeners,
 getSingleGener
 };
