@@ -1,10 +1,10 @@
 const {Router}  = require("express");
-const {getUsernames, getAllMovies, 
+const { getAllMovies, 
     getSingleMovie,  getAllGeners, 
     getALLDirector, getSingleGener} = require("../controllers/queryUsername")
 const indexRouter = Router();
 
-indexRouter.get("/",  getUsernames)
+
 indexRouter.get('/movies', getAllMovies)
 indexRouter.get('/movies/:id', getSingleMovie)
 indexRouter.get('/geners',  getAllGeners)

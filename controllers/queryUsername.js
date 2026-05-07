@@ -1,13 +1,6 @@
 const db = require("../db/queries");
 
-async function getUsernames(req, res) {
 
-  //res.render('index')
-  
-  const directornames = await db.getALLDirectorNames();
-  console.log("Usernames: ", directornames);
-  res.send("Usernames: " + directornames.map(user => user.directorname).join(", "));
-}
 async function getAllMovies(req, res){
   const movies = await  db.getALLMoviesWithDirectors()
   const generes = await db.getAllMoviesWithGeneres()
@@ -40,7 +33,10 @@ async function getSingleGener(req, res){
 async function getALLDirector(req, res){
   const director = await db.getALLDirectorNames()
   console.log("Director", director)
-  res.send('Fuck Off')
+  res.render('Director/director', {
+    title: 'Mini Messageboard',
+    director: director
+  })
 }
 async function getSingleMovie(req, res){
   const movieid = req.params.id
@@ -64,7 +60,6 @@ async function createUsernamePost(req, res) {
 module.exports = {
   getAllMovies,
   getSingleMovie,
-  getUsernames,
   getALLDirector,
 getAllGeners,
 getSingleGener
