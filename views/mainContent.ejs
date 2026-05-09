@@ -18,7 +18,8 @@
                                    %>
                                    <tr class="bg-gray-50 border-b cursor-pointer">
                                         <td class="px-6 py-3 flex gap-4">
-                                            <img src="<%= movie.imageurl %>" 
+                                            <a href="/movies/<%=movie.movieid%>">
+                                                <img src="<%= movie.imageurl %>" 
                                                  alt=""
                                                 width="80" 
                                                  height="80"
@@ -29,6 +30,8 @@
                                            
                                                          <p class="text-gray-500">By <%=movie.directorname%></p>
                                                 </div>
+                                            </a>
+                                            
                                          
                                         </td>
                                         <td class="px-6 py-3">

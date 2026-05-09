@@ -56,8 +56,29 @@ JOIN directors ON movie_director.directorid = directors.directorid
 WHERE movies.movieid = ${id}`)
     return rows;
 }
-async function insertUsername(username){
-    await pool.query("INSERT INTO usernames (username) VALUES ($1)", [USERNAME]);
+
+async function getAllGenersOfSingleMovie(id){
+    const {rows} = await pool.query(`
+        SELECT 
+   *
+   FROM genres
+   JOIN movie_genre ON movie_genre.genreid = genres.genreid 
+    JOIN movies ON movie_genre.movieid = movies.movieid
+	WHERE movies.movieid = ${id}
+        `)
+    return rows;
+}
+
+async function getAllDirectorsOfSingleMovie(id){
+    const {rows} = await pool.query(`
+         SELECT 
+   *
+   FROM directors
+   JOIN movie_director ON movie_director.directorid = directors.directorid 
+    JOIN movies ON movie_director.movieid = movies.movieid
+	WHERE movies.movieid = ${id}
+        `)
+    return rows;
 }
 
 module.exports = {
@@ -67,6 +88,7 @@ module.exports = {
     getALLDirectorNames,
     getDirectorMovies,
     getAllGeners,
-    getSingleGener
-   
+    getSingleGener,
+    getAllGenersOfSingleMovie,
+    getAllDirectorsOfSingleMovie
 }

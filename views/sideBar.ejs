@@ -1,33 +1,50 @@
- <div class="bg-white border-r-2 p-6  flex flex-col gap-12">
-            <h1 class="text-4xl font-bold ">Movie Vault</h1>
-              <div >
-                <a  class = "flex gap-4 items-center" href="/">
-                     <i class="fa fa-home text-gray-800" aria-hidden="true"></i>
-                <p class="text-gray-800">DashBoard</p>
-                </a>
-               
-             </div>
-             <div >
-                <a class="flex gap-4 items-center"  href="/movies">
-                           <i class="fa-solid fa-film text-gray-800"></i>
-                     <p class="text-gray-800 ">Movies</p>   
-                </a>
-              
-             </div>
-             <div >
-                <a  class="flex gap-4 items-center" href="/directors">
-                     <i class="fa-solid fa-user text-gray-800"></i>
-                     <p class="text-gray-800">Directors</p>
-                </a>
-               
-             </div>
-             <div >
-                <a class="flex gap-4 items-center" href="/geners">
-                         <i class="fa-solid fa-layer-group text-gray-800"></i>
-                          <p class="text-gray-800">Geners</p>
-                </a>
-               
-             </div>
-           
-             
+<div class="bg-white border-r-2  flex flex-col">
+    
+    <!-- Logo / Header -->
+    <div class="p-8 border-b">
+        <h1 class="text-4xl font-bold tracking-tight text-gray-900 flex items-center gap-3">
+            <i class="fas fa-film text-violet-600"></i>
+            Movie Vault
+        </h1>
+    </div>
+
+    <!-- Navigation -->
+    <div class="flex-1 px-6 py-8">
+        <nav class="flex flex-col gap-2">
+            
+            <a href="/" 
+               class="flex items-center gap-4 px-6 py-4 rounded-2xl text-gray-700 hover:bg-zinc-100 transition-all duration-200 group">
+                <i class="fa fa-home text-xl w-6"></i>
+                <span class="font-medium">Dashboard</span>
+            </a>
+
+            <a href="/movies" 
+               class="flex items-center gap-4 px-6 py-4 rounded-2xl text-gray-700 hover:bg-zinc-100 transition-all duration-200 group">
+                <i class="fa-solid fa-film text-xl w-6"></i>
+                <span class="font-medium">Movies</span>
+            </a>
+
+            <a href="/directors" 
+               class="flex items-center gap-4 px-6 py-4 rounded-2xl text-gray-700 hover:bg-zinc-100 transition-all duration-200 group">
+                <i class="fas fa-video text-amber-600 text-xl w-6"></i>
+                <span class="font-medium">Directors</span>
+            </a>
+
+            <a href="/geners" 
+               class="flex items-center gap-4 px-6 py-4 rounded-2xl text-gray-700 hover:bg-zinc-100 transition-all duration-200 group">
+                <i class="fas fa-tags text-violet-600 text-xl w-6"></i>
+                <span class="font-medium">Genres</span>
+            </a>
+
+        </nav>
+    </div>
+
+    <!-- Optional Footer -->
+    <div class="p-6 border-t mt-auto">
+        <div class="text-xs text-gray-400 flex items-center gap-2">
+            <i class="fas fa-copyright"></i>
+            <span>© 2026 Movie Vault</span>
         </div>
+    </div>
+
+</div>

@@ -64,10 +64,14 @@ async function getDirectorMovies(req, res){
 async function getSingleMovie(req, res){
   const movieid = req.params.id
   const singleMovie = await db.getSpecficMovies(movieid);
-  console.log("Movie:", singleMovie);
+  const categories = await db.getAllGenersOfSingleMovie(movieid);
+  const directors = await db.getAllDirectorsOfSingleMovie(movieid);
+  console.log("Movie:",  categories);
   res.render('singleMovie', {
     title: 'A Single Movie Detail',
-    singleMovie: singleMovie
+    singleMovie: singleMovie,
+    categories: categories,
+    directors: directors
   })
 }
 

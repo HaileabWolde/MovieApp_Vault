@@ -101,4 +101,25 @@ JOIN movie_genre ON genres.genreid = movie_genre.genreid
 JOIN movies ON movie_genre.movieid = movies.movieid
 WHERE genres.genreid = 2
 
+ SELECT 
+             *
+         FROM genres
+        JOIN movie_genre ON genres.genreid = movie_genre.genreid
+        JOIN movies ON movie_genre.movieid = movies.movieid
+        WHERE genres.genreid = 2
+
+SELECT 
+    *
+FROM movies
+JOIN movie_director ON movies.movieid = movie_director.movieid
+JOIN directors ON movie_director.directorid = directors.directorid
+WHERE movies.movieid = 2
+
+
+ 
+    
+
+SELECT * FROM movies
+SELECT * FROM genres
+SELECT * FROM movie_genre
 		
