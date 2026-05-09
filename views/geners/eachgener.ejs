@@ -30,7 +30,9 @@
                     <tbody>
                         <% if (singleGener && singleGener.length > 0) { %>
                             <% singleGener.forEach((movie) => { %>
-                                <tr class="border-b hover:bg-gray-50 cursor-pointer">
+                                <tr
+                                onclick="window.location.href='/movies/<%= movie.movieid %>'" 
+                                class="border-b hover:bg-gray-50 cursor-pointer">
                                     <td class="px-6 py-3">
                                         <p class="font-semibold"><%= movie.moviename %></p>
                                     </td>
