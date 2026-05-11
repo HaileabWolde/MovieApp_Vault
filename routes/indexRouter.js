@@ -5,11 +5,14 @@ const { getAllMovies,
 
 const {getAllGeners, getSingleGener } = require("../controllers/genersQuery")
 const {getALLDirector, getDirectorMovies} = require("../controllers/directorQuery")
+const {addMovieForm} = require("../controllers/addMovieQuery")
 const indexRouter = Router();
 
 
 indexRouter.get('/movies', getAllMovies)
+indexRouter.get('/movies/add', addMovieForm)
 indexRouter.get('/movies/:id', getSingleMovie)
+
 indexRouter.get('/geners',  getAllGeners)
 indexRouter.get('/geners/:genername/:id', getSingleGener)
 indexRouter.get('/directors', getALLDirector)

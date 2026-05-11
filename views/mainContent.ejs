@@ -5,14 +5,16 @@
                          <h1 class="text-3xl font-bold ">Movies</h1>
                         <p class="text-gray-500">Showing <%=movies.length%> Movies</p>
                     </span>
-                    <button
-                     onclick="window.location.href='/movies/add'"  
-                    class="flex items-center bg-blue-500 px-4 py-1 gap-4 rounded-xl">
-                        <i
+                <a
+                class="flex items-center bg-blue-500 px-4 py-1 gap-4 rounded-xl" 
+                href="/movies/add">
+                  <i
                           
                         class="fa-solid fa-plus text-white"></i>
                         <h1 class="text-white font-bold text-lg">Add A Movie</h1>
-                    </button>
+                </a>
+                    
+                     
                   
                 </div>
                 <div class="bg-white h-full shadow-xl rounded-xl border-2">
