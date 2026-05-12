@@ -17,14 +17,17 @@
 
         <div class="bg-zinc-100 overflow-auto pt-10 px-6 pb-8">
             <div class="max-w-4xl mx-auto">
-                <div class="bg-white shadow-2xl rounded-3xl p-10 border border-zinc-200">
+                <div class="bg-white shadow-2xl rounded-3xl p-10 border border-zinc-200 ">
                     
                     <div class="flex items-center gap-3 mb-10">
                         <i class="fa-solid fa-film text-4xl text-violet-600"></i>
                         <h1 class="text-3xl font-bold text-zinc-800">Add New Movie</h1>
                     </div>
 
-                    <form method="POST" action="/movie/newMovie" id="myform" class="space-y-10">
+                    <form method="POST" 
+                    action="/movie/newMovie" 
+                    id="myform" 
+                   >
 
                         <!-- Basic Info -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -54,7 +57,7 @@
                                     <option value="Documentary">Documentary</option>
                                     <option value="Anime">Anime</option>
                                 </select>
-                                <span id="movietypeError" class="text-red-500 text-sm mt-1"></span>
+                            
                             </div>
                         </div>
 
@@ -69,7 +72,7 @@
                                 rows="3"
                                 class="outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-3xl px-5 py-4 text-base transition-all resize-y"
                                 placeholder="Write a short description..."></textarea>
-                            <span id="descriptionError" class="text-red-500 text-sm mt-1"></span>
+                       
                         </div>
 
                         <!-- Priority + Rating + Image -->
@@ -80,11 +83,13 @@
                                 </label>
                                 <select id="priority" name="priority" 
                                     class="outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4">
+                                    
                                     <option value="1">1 - Low</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5 - High</option>
+                                    <option value="0">Already Watched it </option>
                                 </select>
                             </div>
 
@@ -122,7 +127,7 @@
                                     </label>
                                 <% }) %>
                             </div>
-                            <span id="directorError" class="text-red-500 text-sm mt-1"></span>
+                          
                         </div>
 
                         <!-- Genres -->
@@ -157,10 +162,11 @@
                                 <select id="rating" name="rating" 
                                     class="outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4">
                                     <option value="" disabled selected>Select Rating</option>
-                                    <% for(let i = 10; i >= 1; i--) { %>
+                                    <% for(let i = 10; i >= 0; i--) { %>
                                         <option value="<%= i %>"><%= i %></option>
                                     <% } %>
                                 </select>
+                                  <span id="ratingError" class="text-red-500 text-sm mt-1"></span>
                             </div>
                             <div>
                                       <label 
@@ -179,7 +185,6 @@
                               
                               
                             </div>
-                        </div>
                         <!-- Submit Button -->
                         <div class="pt-6">
                             <button type="submit"
@@ -188,12 +193,14 @@
                                 Add Movie
                             </button>
                         </div>
+                        </div>
+                        
 
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
+  <script src="/script.js"></script>
 </body>
 </html>
