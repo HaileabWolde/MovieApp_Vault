@@ -14,7 +14,16 @@ WHERE directors.directorid = ${id}
         `)
         return rows
 }
+
+async function allDirectorsNames(){
+    const {rows} = await pool.query(`
+        SELECT *
+        FROM directors
+        `)
+    return rows;
+}
 module.exports = {
     getALLDirectorNames,
     getDirectorMovies,
+    allDirectorsNames
 }

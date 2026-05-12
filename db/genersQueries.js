@@ -14,7 +14,15 @@ async function getSingleGener(id){
         `);
     return rows
 }
+
+async function getAllGenersNames(){
+    const {rows} = await pool.query(`
+        SELECT * FROM genres
+        `)
+    return rows;
+}
 module.exports = {  
     getAllGeners,
     getSingleGener,
+    getAllGenersNames
 }
