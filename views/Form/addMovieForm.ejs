@@ -37,7 +37,7 @@
                                     id="moviename" 
                                     name="moviename"
                                     placeholder="Enter movie title"
-                                    class="w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4 text-base transition-all">
+                                    class=" outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4 text-base transition-all">
                                 <span id="movienameError" class="text-red-500 text-sm mt-1"></span>
                             </div>
 
@@ -48,7 +48,7 @@
                                 <select 
                                     id="typeofmovie" 
                                     name="typeofmovie"
-                                    class="w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4 text-base transition-all">
+                                    class="outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4 text-base transition-all">
                                     <option value="Movie">Movie</option>
                                     <option value="Series">Series</option>
                                     <option value="Documentary">Documentary</option>
@@ -66,20 +66,20 @@
                             <textarea
                                 id="description"
                                 name="description"
-                                rows="6"
-                                class="w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-3xl px-5 py-4 text-base transition-all resize-y"
+                                rows="3"
+                                class="outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-3xl px-5 py-4 text-base transition-all resize-y"
                                 placeholder="Write a short description..."></textarea>
                             <span id="descriptionError" class="text-red-500 text-sm mt-1"></span>
                         </div>
 
                         <!-- Priority + Rating + Image -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div>
                                 <label for="priority" class="block text-sm font-medium text-zinc-700 mb-2">
                                     Priority
                                 </label>
                                 <select id="priority" name="priority" 
-                                    class="w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4">
+                                    class="outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4">
                                     <option value="1">1 - Low</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -88,18 +88,7 @@
                                 </select>
                             </div>
 
-                            <div>
-                                <label for="rating" class="block text-sm font-medium text-zinc-700 mb-2">
-                                    Rating (Out of 10)
-                                </label>
-                                <select id="rating" name="rating" 
-                                    class="w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4">
-                                    <option value="" disabled selected>Select Rating</option>
-                                    <% for(let i = 10; i >= 1; i--) { %>
-                                        <option value="<%= i %>"><%= i %></option>
-                                    <% } %>
-                                </select>
-                            </div>
+                            
 
                             <div>
                                 <label for="imageurl" class="block text-sm font-medium text-zinc-700 mb-2">
@@ -110,14 +99,14 @@
                                     id="imageurl" 
                                     name="imageurl"
                                     placeholder="https://..."
-                                    class="w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4">
+                                    class="outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4">
                             </div>
                         </div>
 
                         <!-- Directors -->
                         <div>
                             <label class="block text-sm font-medium text-zinc-700 mb-3">
-                                <i class="fa-solid fa-user-tie mr-2"></i> Directors
+                                <i class="fa-solid fa-user-tie mr-2 text-amber-600 text-xl"></i> Directors
                             </label>
                             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-60 overflow-y-auto p-2 border border-zinc-200 rounded-3xl">
                                 <% allDirectors.forEach(director => { %>
@@ -126,7 +115,7 @@
                                             type="checkbox" 
                                             name="director" 
                                             value="<%= director.directorname %>"
-                                            class="w-5 h-5 accent-violet-600">
+                                            class="outline-none w-5 h-5 accent-violet-600">
                                         <span class="text-zinc-700 group-hover:text-violet-700 transition-colors">
                                             <%= director.directorname %>
                                         </span>
@@ -139,7 +128,7 @@
                         <!-- Genres -->
                         <div>
                             <label class="block text-sm font-medium text-zinc-700 mb-3">
-                                <i class="fa-solid fa-tags mr-2"></i> Genres
+                                <i class="fa-solid fa-tags mr-2 text-violet-600 text-xl "></i> Genres
                             </label>
                             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-60 overflow-y-auto p-2 border border-zinc-200 rounded-3xl">
                                 <% allGeners.forEach(genre => { %>
@@ -148,7 +137,7 @@
                                             type="checkbox" 
                                             name="geners" 
                                             value="<%= genre.genername %>"
-                                            class="w-5 h-5 accent-violet-600">
+                                            class="outline-none w-5 h-5 accent-violet-600">
                                         <span class="text-zinc-700 group-hover:text-violet-700 transition-colors">
                                             <%= genre.genername %>
                                         </span>
@@ -158,6 +147,39 @@
                             <span id="generError" class="text-red-500 text-sm mt-1"></span>
                         </div>
 
+                        <!--rating and watchedDate-->
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 ">
+                            <div>
+                                <label for="rating" class="block text-sm font-medium text-zinc-700 mb-2">
+                                    Rating (Out of 10)
+                                </label>
+                                <select id="rating" name="rating" 
+                                    class="outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4">
+                                    <option value="" disabled selected>Select Rating</option>
+                                    <% for(let i = 10; i >= 1; i--) { %>
+                                        <option value="<%= i %>"><%= i %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div>
+                                      <label 
+                                for="watcheddate"
+                                class="block text-sm font-medium text-zinc-700 mb-2"
+                                >
+                                Watched Date
+                                </label>
+                                <input
+                                type="date" 
+                                    id="watcheddate" 
+                                    name="watcheddate"
+                                    class="cursor-pointer outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4"
+                                >
+                            </div>
+                              
+                              
+                            </div>
+                        </div>
                         <!-- Submit Button -->
                         <div class="pt-6">
                             <button type="submit"
