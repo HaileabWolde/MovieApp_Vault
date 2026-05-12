@@ -7,19 +7,170 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/style.css">
     
-    <title>Inventory Application</title>
+    <title>Add New Movie</title>
 </head>
-<body class="m-0">
+<body class="m-0 bg-zinc-950">
 
     <div class="grid grid-cols-[20%_80%] h-screen w-full">
         <!-- Sidebar -->
         <%- include('../sideBar') %>
 
-      <div class="bg-zinc-100 overflow-auto pt-8 px-4 pb-2 flex flex-col gap-8 min-h-screen">
-            <div class="bg-white max-w-3xl w-full mx-auto shadow-xl rounded-xl p-12 border-2 flex flex-col gap-4">
-                <h1 class="text-2xl font-semibold">Add New Movie</h1>
+        <div class="bg-zinc-100 overflow-auto pt-10 px-6 pb-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white shadow-2xl rounded-3xl p-10 border border-zinc-200">
+                    
+                    <div class="flex items-center gap-3 mb-10">
+                        <i class="fa-solid fa-film text-4xl text-violet-600"></i>
+                        <h1 class="text-3xl font-bold text-zinc-800">Add New Movie</h1>
+                    </div>
+
+                    <form method="POST" action="/movie/newMovie" id="myform" class="space-y-10">
+
+                        <!-- Basic Info -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <label for="moviename" class="block text-sm font-medium text-zinc-700 mb-2">
+                                    Movie Title
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="moviename" 
+                                    name="moviename"
+                                    placeholder="Enter movie title"
+                                    class="w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4 text-base transition-all">
+                                <span id="movienameError" class="text-red-500 text-sm mt-1"></span>
+                            </div>
+
+                            <div>
+                                <label for="typeofmovie" class="block text-sm font-medium text-zinc-700 mb-2">
+                                    Type
+                                </label>
+                                <select 
+                                    id="typeofmovie" 
+                                    name="typeofmovie"
+                                    class="w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4 text-base transition-all">
+                                    <option value="Movie">Movie</option>
+                                    <option value="Series">Series</option>
+                                    <option value="Documentary">Documentary</option>
+                                    <option value="Anime">Anime</option>
+                                </select>
+                                <span id="movietypeError" class="text-red-500 text-sm mt-1"></span>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div>
+                            <label for="description" class="block text-sm font-medium text-zinc-700 mb-2">
+                                Description
+                            </label>
+                            <textarea
+                                id="description"
+                                name="description"
+                                rows="6"
+                                class="w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-3xl px-5 py-4 text-base transition-all resize-y"
+                                placeholder="Write a short description..."></textarea>
+                            <span id="descriptionError" class="text-red-500 text-sm mt-1"></span>
+                        </div>
+
+                        <!-- Priority + Rating + Image -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div>
+                                <label for="priority" class="block text-sm font-medium text-zinc-700 mb-2">
+                                    Priority
+                                </label>
+                                <select id="priority" name="priority" 
+                                    class="w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4">
+                                    <option value="1">1 - Low</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5 - High</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="rating" class="block text-sm font-medium text-zinc-700 mb-2">
+                                    Rating (Out of 10)
+                                </label>
+                                <select id="rating" name="rating" 
+                                    class="w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4">
+                                    <option value="" disabled selected>Select Rating</option>
+                                    <% for(let i = 10; i >= 1; i--) { %>
+                                        <option value="<%= i %>"><%= i %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="imageurl" class="block text-sm font-medium text-zinc-700 mb-2">
+                                    Cover Image URL
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="imageurl" 
+                                    name="imageurl"
+                                    placeholder="https://..."
+                                    class="w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4">
+                            </div>
+                        </div>
+
+                        <!-- Directors -->
+                        <div>
+                            <label class="block text-sm font-medium text-zinc-700 mb-3">
+                                <i class="fa-solid fa-user-tie mr-2"></i> Directors
+                            </label>
+                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-60 overflow-y-auto p-2 border border-zinc-200 rounded-3xl">
+                                <% allDirectors.forEach(director => { %>
+                                    <label class="flex items-center gap-3 bg-white hover:bg-violet-50 border border-transparent hover:border-violet-200 rounded-2xl p-3 cursor-pointer transition-all group">
+                                        <input 
+                                            type="checkbox" 
+                                            name="director" 
+                                            value="<%= director.directorname %>"
+                                            class="w-5 h-5 accent-violet-600">
+                                        <span class="text-zinc-700 group-hover:text-violet-700 transition-colors">
+                                            <%= director.directorname %>
+                                        </span>
+                                    </label>
+                                <% }) %>
+                            </div>
+                            <span id="directorError" class="text-red-500 text-sm mt-1"></span>
+                        </div>
+
+                        <!-- Genres -->
+                        <div>
+                            <label class="block text-sm font-medium text-zinc-700 mb-3">
+                                <i class="fa-solid fa-tags mr-2"></i> Genres
+                            </label>
+                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-60 overflow-y-auto p-2 border border-zinc-200 rounded-3xl">
+                                <% allGeners.forEach(genre => { %>
+                                    <label class="flex items-center gap-3 bg-white hover:bg-violet-50 border border-transparent hover:border-violet-200 rounded-2xl p-3 cursor-pointer transition-all group">
+                                        <input 
+                                            type="checkbox" 
+                                            name="geners" 
+                                            value="<%= genre.genername %>"
+                                            class="w-5 h-5 accent-violet-600">
+                                        <span class="text-zinc-700 group-hover:text-violet-700 transition-colors">
+                                            <%= genre.genername %>
+                                        </span>
+                                    </label>
+                                <% }) %>
+                            </div>
+                            <span id="generError" class="text-red-500 text-sm mt-1"></span>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-6">
+                            <button type="submit"
+                                class="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold text-lg py-5 rounded-2xl transition-all duration-200 flex items-center justify-center gap-3 shadow-lg shadow-violet-500/30">
+                                <i class="fa-solid fa-plus"></i>
+                                Add Movie
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
             </div>
-      </div>
+        </div>
     </div>
 
 </body>
