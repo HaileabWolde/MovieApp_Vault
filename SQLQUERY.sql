@@ -128,6 +128,8 @@ SELECT * FROM movies
 SELECT * FROM directors
 SELECT * FROM genres
 SELECT * FROM movie_director
+SELECT * FROM movie_genre
+
 
  SELECT 
     *
@@ -140,4 +142,45 @@ SELECT
 FROM genres
 JOIN movie_genre ON genres.genreid = movie_genre.genreid
 JOIN movies ON movie_genre.movieid = movies.movieid
-		
+
+  SELECT 
+*
+FROM directors 
+JOIN movie_director ON directors.directorid = movie_director.directorid
+JOIN movies ON movie_director.movieid = movies.movieid
+WHERE directors.directorid = 1
+
+ALTER TABLE  movie_director
+  DROP CONSTRAINT movie_director_directorid_fkey,
+  ADD CONSTRAINT movie_director_directorid_fkey
+    FOREIGN KEY (directorid) REFERENCES directors(directorid) 
+    ON DELETE CASCADE;
+
+-- Fix the Course relationship
+ALTER TABLE movie_director
+  DROP CONSTRAINT movie_director_movieid_fkey,
+  ADD CONSTRAINT movie_director_movieid_fkey
+    FOREIGN KEY (movieid) REFERENCES movies(movieid) 
+    ON DELETE CASCADE;
+
+
+--add constraint to the movie genre table
+ALTER TABLE  movie_genre
+  DROP CONSTRAINT movie_genre_genreid_fkey,
+  ADD CONSTRAINT movie_genre_genreid_fkey
+    FOREIGN KEY (genreid) REFERENCES genres(genreid) 
+    ON DELETE CASCADE;
+
+-- Fix the Course relationship
+ALTER TABLE movie_genre
+  DROP CONSTRAINT movie_genre_movieid_fkey,
+  ADD CONSTRAINT movie_genre_movieid_fkey
+    FOREIGN KEY (movieid) REFERENCES movies(movieid) 
+    ON DELETE CASCADE;
+
+SELECT * FROM genres
+
+SELECT constraint_name 
+FROM information_schema.table_constraints 
+WHERE table_name = 'movie_genre' 
+  AND constraint_type = 'FOREIGN KEY';
