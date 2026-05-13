@@ -31,6 +31,11 @@
                                    %>
                                    <tr class="bg-gray-50 border-b cursor-pointer">
                                         <td class="px-6 py-3 flex gap-4">
+                                              <% 
+                                           // Filter genres that belong to current movie
+                                          const movieDirectors = directors.filter(d => d.movieid === movie.movieid);
+                                             %>
+
                                             <a href="/movies/<%=movie.movieid%>">
                                                 <img src="<%= movie.imageurl %>" 
                                                  alt=""
@@ -41,7 +46,16 @@
                                                 <div class="flex flex-col justify-center">
                                                            <p class="font-semibold"><%=movie.moviename.toUpperCase()%></p>
                                            
-                                                         <p class="text-gray-500">By <%=movie.directorname%></p>
+                                                         <p class="text-gray-500">
+                                                                    By    
+                                                              <% if (movieDirectors.length > 0) { %>
+                                                                  <% movieDirectors.forEach(director => { %>
+                                                                     <p class="font-semibold"><%= director.directorname%></p>
+                                                               <% }); %>
+                                                             <% } 
+                                                          else { %>
+                                                             <p class="text-gray-400 text-sm italic">No Director Named</p>
+                                                 <% } %></p>
                                                 </div>
                                             </a>
                                             

@@ -82,6 +82,7 @@ SET imageurl = 'https://i.pinimg.com/1200x/ec/72/fe/ec72fe02e05bdfb9191d55ef6ae6
 WHERE movieid = 3;
 
 SELECT * FROM movies
+SELECT* FROM movie_genre
 INSERT INTO movie_genre(genreid, movieid)
 VALUES (7, 2),
 		(8, 2),
@@ -116,10 +117,27 @@ JOIN directors ON movie_director.directorid = directors.directorid
 WHERE movies.movieid = 2
 
 
- 
-    
+ SELECT 
+     *
+   FROM genres
+   JOIN movie_genre ON genres.genreid = movie_genre.movieid
+    JOIN movies ON movie_genre.movieid = movies.movieid
+     WHERE genres.genreid = ${id}
 
 SELECT * FROM movies
+SELECT * FROM directors
 SELECT * FROM genres
-SELECT * FROM movie_genre
+SELECT * FROM movie_director
+
+ SELECT 
+    *
+FROM directors
+JOIN movie_director ON directors.directorid = movie_director.directorid
+JOIN movies ON movie_director.movieid = movies.movieid
+
+SELECT 
+    *
+FROM genres
+JOIN movie_genre ON genres.genreid = movie_genre.genreid
+JOIN movies ON movie_genre.movieid = movies.movieid
 		

@@ -30,18 +30,21 @@ const validateForm = (event) => {
         movienameError.style.color = '#EA0063';
       
     }
-    else if(priority.value && (rating.value || dateInput.value)){
+    else if(priority.value === "0" && (rating.value || dateInput.value)){
         ratingError.textContent = "You Can't Rate A movie You Haven't watched yet"
         ratingError.style.color = '#EA0063'
     }
 
     // === Rating Logic (for Already Watched) ===
-    if (priority.value === "0" && (!rating.value || !dateInput.value)) {
+   else  if (priority.value === "0" && (!rating.value || !dateInput.value)) {
         ratingError.textContent = "Please provide rating and watched date for watched movies";
         ratingError.style.color = '#EA0063';
         
     }
- 
+    else{
+          myform.submit();   // ← this triggers the real POST
+    }
+       
 };
 
 myform.addEventListener('submit', validateForm);

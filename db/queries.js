@@ -2,10 +2,20 @@ const pool = require("./pool");
 
 
 
+async function allMovies() {
+    const {rows} = await pool.query(`
+        SELECT * FROM movies
+        `)
+    return rows;
+}
+
 async function getALLMoviesWithDirectors(){
-    const {rows} = await pool.query(`SELECT* 
-        FROM movies JOIN movie_director ON movies.movieid = movie_director.movieid 
-        JOIN directors ON movie_director.directorid = directors.directorid`);
+    const {rows} = await pool.query(`
+ SELECT 
+    *
+FROM directors
+JOIN movie_director ON directors.directorid = movie_director.directorid
+JOIN movies ON movie_director.movieid = movies.movieid`);
    
     return rows;
 }
@@ -53,10 +63,64 @@ async function getAllDirectorsOfSingleMovie(id){
     return rows;
 }
 
+async function insertNewMovie(
+    moviename, 
+    typeofmovie,
+    description, 
+    priority,
+    imageurl, 
+    director, 
+    geners,      // ← this is likely an array
+    rating, 
+    watcheddate
+) {
+    const movieResult = await pool.query(`
+        INSERT INTO movies 
+            (moviename, description, typeofmovie, priority, imageurl, rating, watcheddate) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        RETURNING movieid
+    `, [moviename, description, typeofmovie, priority, imageurl, rating, watcheddate]);
+
+    const movieId = movieResult.rows[0].movieid;
+
+    // === Director ===
+    if (director) {
+        const directorArray = Array.isArray(director) ? director : [director];
+        for (const directorId of directorArray){
+            if(directorId){
+                 await pool.query(`
+            INSERT INTO movie_director (directorid, movieid)
+            VALUES ($1, $2)
+        `, [directorId, movieId]);
+            }
+        }
+       
+    }
+
+    // === Genres (Array Handling) ===
+    if (geners) {
+        console.log(geners)
+        // Convert to array if it's not already (in case single value comes as string)
+        const genreArray = Array.isArray(geners) ? geners : [geners];
+
+        for (const genreId of genreArray) {
+            if (genreId) {  // skip empty values
+                await pool.query(`
+                    INSERT INTO movie_genre (genreid, movieid)
+                    VALUES ($1, $2)
+                `, [genreId, movieId]);
+            }
+        }
+    }
+
+    return movieId;
+}
 module.exports = {
+    allMovies,
     getALLMoviesWithDirectors,
      getAllMoviesWithGeneres,
     getSpecficMovies,
     getAllGenersOfSingleMovie,
-    getAllDirectorsOfSingleMovie
+    getAllDirectorsOfSingleMovie,
+    insertNewMovie
 }

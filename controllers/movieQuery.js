@@ -2,13 +2,15 @@ const db = require("../db/queries");
 
 
 async function getAllMovies(req, res){
-  const movies = await  db.getALLMoviesWithDirectors()
-  const generes = await db.getAllMoviesWithGeneres()
+  const movies = await db.allMovies()
+  const directors = await  db.getALLMoviesWithDirectors()
+  const genres = await db.getAllMoviesWithGeneres()
   
   res.render('index', { 
     title: 'Mini Messageboard',
     movies: movies,
-    generes: generes
+    directors: directors,
+    genres: genres
   })
 }
 

@@ -118,8 +118,8 @@
                                     <label class="flex items-center gap-3 bg-white hover:bg-violet-50 border border-transparent hover:border-violet-200 rounded-2xl p-3 cursor-pointer transition-all group">
                                         <input 
                                             type="checkbox" 
-                                            name="director" 
-                                            value="<%= director.directorname %>"
+                                            name="director[]" 
+                                            value="<%= director.directorid%>"
                                             class="outline-none w-5 h-5 accent-violet-600">
                                         <span class="text-zinc-700 group-hover:text-violet-700 transition-colors">
                                             <%= director.directorname %>
@@ -140,8 +140,8 @@
                                     <label class="flex items-center gap-3 bg-white hover:bg-violet-50 border border-transparent hover:border-violet-200 rounded-2xl p-3 cursor-pointer transition-all group">
                                         <input 
                                             type="checkbox" 
-                                            name="geners" 
-                                            value="<%= genre.genername %>"
+                                            name="geners[]" 
+                                            value="<%= genre.genreid%>"
                                             class="outline-none w-5 h-5 accent-violet-600">
                                         <span class="text-zinc-700 group-hover:text-violet-700 transition-colors">
                                             <%= genre.genername %>
