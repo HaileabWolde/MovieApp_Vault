@@ -30,7 +30,7 @@ const validateForm = (event) => {
         movienameError.style.color = '#EA0063';
       
     }
-    else if(priority.value === "0" && (rating.value || dateInput.value)){
+    else if(priority.value != "0" && (rating.value || dateInput.value)){
         ratingError.textContent = "You Can't Rate A movie You Haven't watched yet"
         ratingError.style.color = '#EA0063'
     }
