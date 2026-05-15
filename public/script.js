@@ -41,8 +41,14 @@ const validateForm = (event) => {
         ratingError.style.color = '#EA0063';
         
     }
+  
     else{
-          myform.submit();   // ← this triggers the real POST
+         if (dateInput.value === "") {
+        // Option A: Disable the input so it isn't sent at all (Postgres will then use NULL)
+        dateInput.disabled = true; 
+    }
+
+    myform.submit();
     }
        
 };

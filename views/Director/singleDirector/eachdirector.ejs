@@ -16,14 +16,14 @@
                  <div class="bg-white pb-8 shadow-xl rounded-xl  border-2 flex flex-col gap-8 justify-center py-8 px-3 ">
                         <h1 class="text-3xl font-bold"><%=directorname%></h1>
                         <p class="text-gray-500">Movies In This Category</p>
-                        <div class="flex  gap-8 flex-wrap justify-center">
+                        <div class="flex  gap-8 flex-wrap justify-center ">
                                 <%singleDirector.map((eachDirector)=> {
                                     %>
                                   <img 
                         src="<%= eachDirector.imageurl %>" 
                         alt="<%= eachDirector.moviename || 'Movie' %>"
-                        width="180" 
-                        height="180"
+                        width="250" 
+                        height="250"
                         onerror="this.style.display='none';"
                         style="object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);"
                     >
