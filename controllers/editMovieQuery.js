@@ -7,7 +7,18 @@ async function editMovieForm(req, res){
     const movieid = req.params.id
       const singleMovie = await db.getSpecficMovies(movieid);
       const categories = await db.getAllGenersOfSingleMovie(movieid);
-      const directors = await db.getAllDirectorsOfSingleMovie(movieid);
+      const directors = await db.getAallDirectorsIdofSingleMovie(movieid);
+        // Use Number() to ensure the result is a number type
+const directorArray= directors.map(obj => Number(obj.directorid)); 
+
+
+    const FormData = {
+      singleMovie,
+      categories,
+       directorArray
+    }
+ 
+  
 
       //all Directors and Geners
       const allDirectors = await dbTwo.allDirectorsNames();
@@ -18,7 +29,7 @@ async function editMovieForm(req, res){
          allDirectors: allDirectors,
         allGeners: allGeners,
         error: null,        // ← Important
-       FormData: null
+       FormData: FormData
       })
 }
 module.exports = {

@@ -45,7 +45,8 @@
                     
                     <div class="flex items-center gap-3 mb-10">
                         <i class="fa-solid fa-film text-4xl text-violet-600"></i>
-                        <h1 class="text-3xl font-bold text-zinc-800">Add New Movie</h1>
+
+                        <h1 class="text-3xl font-bold text-zinc-800"><%=FormData?.singleMovie ? 'Editing A Movie' : 'Add New Movie' %></h1>
                     </div>
 
                     <form method="POST" 
@@ -63,6 +64,7 @@
                                     type="text" 
                                     id="moviename" 
                                     name="moviename"
+                                    value='<%=FormData?.singleMovie[0].moviename%>'
                                     placeholder="Enter movie title"
                                     class=" outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4 text-base transition-all">
                                 <span id="movienameError" class="text-red-500 text-sm mt-1"></span>
@@ -75,8 +77,9 @@
                                 <select 
                                     id="typeofmovie" 
                                     name="typeofmovie"
+                                
                                     class="outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4 text-base transition-all">
-                                    <option value="Movie">Movie</option>
+                                    <option value='Movie'>Movie</option>
                                     <option value="Series">Series</option>
                                     <option value="Documentary">Documentary</option>
                                     <option value="Anime">Anime</option>
@@ -127,7 +130,7 @@
                                     type="text" 
                                     id="imageurl" 
                                     name="imageurl"
-                                    placeholder="https://..."
+                                    placeholder="<%=FormData?.singleMovie ? FormData.singleMovie[0].imageurl: 'https://...'%>"
                                     class="outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4">
                             </div>
                         </div>
@@ -142,9 +145,12 @@
                                     <label class="flex items-center gap-3 bg-white hover:bg-violet-50 border border-transparent hover:border-violet-200 rounded-2xl p-3 cursor-pointer transition-all group">
                                         <input 
                                             type="checkbox" 
+                                   
                                             name="director[]" 
                                             value="<%= director.directorid%>"
-                                            class="outline-none w-5 h-5 accent-violet-600">
+                                              class="outline-none w-5 h-5 accent-violet-600"
+                                            <%= FormData?.directorArray.includes(director.directorid) ? 'checked' : '' %>
+                                          >
                                         <span class="text-zinc-700 group-hover:text-violet-700 transition-colors">
                                             <%= director.directorname %>
                                         </span>
