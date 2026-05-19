@@ -16,7 +16,7 @@ async function addMovieForm(req, res){
         allDirectors: allDirectors,
         allGeners: allGeners,
         error: null,        // ← Important
-       
+       FormData: null
     }
    )
 }
