@@ -10,7 +10,31 @@
     <title>Add New Movie</title>
 </head>
 <body class="m-0 bg-zinc-950">
+    <!-- ERROR MODAL -->
+<div id="errorModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center ">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
+        <!-- Header -->
+        <div class="bg-red-600 px-6 py-4 text-white flex items-center gap-3">
+            <i class="fa-solid fa-circle-exclamation text-2xl"></i>
+            <h3 class="font-semibold text-lg">Duplicate Movie</h3>
+        </div>
+        
+        <!-- Body -->
+        <div class="p-8 text-center">
+            <p id="modalErrorMessage" class="text-zinc-700 text-lg leading-relaxed">
+                <!-- Error message injected here -->
+            </p>
+        </div>
 
+        <!-- Footer -->
+        <div class="border-t px-6 py-4 flex justify-end">
+            <button onclick="closeModal()" 
+                    class="bg-zinc-800 hover:bg-zinc-900 text-white px-8 py-3 rounded-2xl font-medium transition-all">
+                Try Another Title
+            </button>
+        </div>
+    </div>
+</div>
     <div class="grid grid-cols-[20%_80%] h-screen w-full">
         <!-- Sidebar -->
         <%- include('../sideBar') %>
@@ -201,6 +225,28 @@
             </div>
         </div>
     </div>
+<script>
+    // Show error modal if error exists
+    window.onload = function() {
+        const error = "<%- error || '' %>";
+        if (error) {
+            
+            document.getElementById('modalErrorMessage').innerHTML = error;
+            document.getElementById('errorModal').classList.remove('hidden');
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('errorModal').classList.add('hidden');
+    }
+
+    // Optional: Close modal when pressing Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === "Escape") {
+            closeModal();
+        }
+    });
+</script>
   <script src="/script.js"></script>
 </body>
 </html>

@@ -14,31 +14,48 @@ async function addMovieForm(req, res){
     {
         title: 'Mini Messageboard',
         allDirectors: allDirectors,
-        allGeners: allGeners
+        allGeners: allGeners,
+        error: null,        // ← Important
+       
     }
    )
 }
 
-async function insertNewMovie(req, res){
-   const {
-      moviename, typeofmovie,
-        description, priority,
-      imageurl, director, 
-      geners, rating, 
-      watcheddate, 
+async function insertNewMovie(req, res, next) {
+    const {
+        moviename, typeofmovie, description, priority,
+        imageurl, director, geners, rating, watcheddate
     } = req.body;
 
- const newMovie =   await database.insertNewMovie(
-      moviename, typeofmovie,
-        description, priority,
-      imageurl, director, 
-      geners, rating, 
-      watcheddate)
+   try {
+        await database.insertNewMovie(
+            moviename, typeofmovie, description, priority,
+            imageurl, director, geners, rating, watcheddate
+        );
 
-  if(!newMovie){
-    throw new CustomNotFoundError("This Movie Already Exists")
-  }
-  res.redirect("/movies");
+        res.redirect("/movies");
+
+    } catch (error) {
+        console.error("Insert Movie Error:", error);
+
+        // Handle Duplicate Movie Error (PostgreSQL)
+        if (error.code === '23505' || error.constraint === 'unique_movie_name') {
+            
+            const allDirectors = await db.allDirectorsNames();
+            const allGeners = await dbOne.getAllGenersNames();
+
+            return res.render('Form/addMovieForm', {
+                title: 'Add New Movie',
+                allDirectors: allDirectors,
+                allGeners: allGeners,
+                error: `A movie titled ${moviename} already exists!`,
+                
+            });
+        }
+
+        // For any other real error, pass to your error middleware
+        next(error);
+    }
 }
 module.exports = {
    addMovieForm,
