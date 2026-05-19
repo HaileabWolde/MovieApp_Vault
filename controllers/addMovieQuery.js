@@ -1,6 +1,10 @@
 const db = require("../db/directorQueries");
 const dbOne = require('../db/genersQueries')
 const database = require('../db/queries');
+//error handling middleware
+
+const CustomNotFoundError = require("../errors/CustomNotFoundError")
+
 
 async function addMovieForm(req, res){
    const allDirectors = await db.allDirectorsNames();
@@ -23,12 +27,17 @@ async function insertNewMovie(req, res){
       geners, rating, 
       watcheddate, 
     } = req.body;
-    await database.insertNewMovie(
+
+ const newMovie =   await database.insertNewMovie(
       moviename, typeofmovie,
         description, priority,
       imageurl, director, 
       geners, rating, 
       watcheddate)
+
+  if(!newMovie){
+    throw new CustomNotFoundError("This Movie Already Exists")
+  }
   res.redirect("/movies");
 }
 module.exports = {
