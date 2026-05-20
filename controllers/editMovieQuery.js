@@ -31,6 +31,24 @@ const genersArray = categories.map(obj=> Number(obj.genreid))
        FormData: FormData
       })
 }
+
+async function editMovie(req, res){
+    const movieid = req.params.id
+     const {
+        moviename, typeofmovie, description, priority,
+        imageurl, director, geners, rating, watcheddate
+    } = req.body;
+    await db.editExistingMovie(
+       moviename, typeofmovie, 
+       description, priority, 
+       imageurl, director, 
+       geners, rating, 
+       watcheddate,movieid
+    )
+    res.redirect("/movies")
+
+}
 module.exports = {
-    editMovieForm
+    editMovieForm,
+    editMovie
 }

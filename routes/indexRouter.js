@@ -7,7 +7,7 @@ const {getAllGeners, getSingleGener } = require("../controllers/genersQuery")
 const {getALLDirector, getDirectorMovies} = require("../controllers/directorQuery")
 const {addMovieForm, insertNewMovie} = require("../controllers/addMovieQuery")
 
-const {editMovieForm}  = require("../controllers/editMovieQuery")
+const {editMovieForm, editMovie}  = require("../controllers/editMovieQuery")
 const indexRouter = Router();
 
 
@@ -26,4 +26,5 @@ indexRouter.get('/director/:directorname/:id', getDirectorMovies)
 
 // POST
 indexRouter.post('/movie/newMovie', insertNewMovie)
+indexRouter.post('/movie/editMovie/:id', editMovie)
 module.exports = indexRouter;

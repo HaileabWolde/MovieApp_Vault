@@ -7,7 +7,15 @@ SELECT * FROM GENRES
 SELECT * FROM MOVIE_GENRE
 SELECT * FROM MOVIE_DIRECTOR
 
+UPDATE movies
+SET moviename = 'Django Unchained',
+	priority = 3
+WHERE movieid = 1;
 
+ SELECT *
+        FROM directors
+		
+WHERE movies.movieid = 4
 CREATE TABLE movies(
 movieid INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 moviename VARCHAR (100),
@@ -16,6 +24,9 @@ typeofmovie  varchar(12),
 rating  INTEGER
 watchedDate DATE,
 )
+ALTER TABLE movies 
+ADD CONSTRAINT unique_movie_name UNIQUE (moviename);
+
 INSERT INTO movies (moviename, description, typeofmovie)
 VALUES 
 	('Django Unchanined', 'A Movie About A Slave', 'Movie')
@@ -178,9 +189,15 @@ ALTER TABLE movie_genre
     FOREIGN KEY (movieid) REFERENCES movies(movieid) 
     ON DELETE CASCADE;
 
-SELECT * FROM genres
+SELECT * FROM movies
+
+ALTER TABLE movies 
+ALTER COLUMN watcheddate DROP NOT NULL;
+
 
 SELECT constraint_name 
 FROM information_schema.table_constraints 
-WHERE table_name = 'movie_genre' 
-  AND constraint_type = 'FOREIGN KEY';
+WHERE table_name = 'MOVIES' 
+  AND constraint_type = 'UNIQUE KEY';
+
+  DELETE FROM movies WHERE movieid IN (10, 11, 12,13,14, 15, 16, 17, 18, 19, 20, 21, 22,23, 24, 25)

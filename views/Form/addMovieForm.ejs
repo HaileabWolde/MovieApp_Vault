@@ -51,7 +51,8 @@
 
                     <form 
                     method="POST" 
-                    action=" <%= FormData?.singleMovie[0] ? '/movie/editMovie' : '/movie/newMovie' %>" 
+                    action=" <%= FormData?.singleMovie[0] ? 
+                    `/movie/editMovie/${FormData?.singleMovie[0].movieid}` : '/movie/newMovie' %>" 
                     id="myform" 
                    >
 
