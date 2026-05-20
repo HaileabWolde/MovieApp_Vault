@@ -120,7 +120,7 @@ async function insertNewMovie(
 
     // === Genres (Array Handling) ===
     if (geners) {
-        console.log(geners)
+   
         // Convert to array if it's not already (in case single value comes as string)
         const genreArray = Array.isArray(geners) ? geners : [geners];
 
@@ -137,68 +137,66 @@ async function insertNewMovie(
  
 }
 
-async function editExistingMovie( 
-    moviename, typeofmovie,
-    description, priority,
-    imageurl, director, 
-    geners,    rating,    // ← this is likely an arrayrating, 
-    watcheddate, movieid){
+async function editExistingMovie(
+    moviename, typeofmovie, description, priority,
+    imageurl, director, geners, rating, watcheddate, movieid
+) {
 
-        const movieResult = await pool.query(`
-       UPDATE movies 
-       SET
-            moviename = $1 ,
-             typeofmovie = $2 ,
+    // 1. Update the main movie record
+    const movieResult = await pool.query(`
+        UPDATE movies 
+        SET 
+            moviename = $1,
+            typeofmovie = $2,
             description = $3,
-            priority = $4 ,
-            imageurl = $5 ,
-            rating = $6 ,
-             watcheddate = $7
-          WHERE movieid = $8
-          RETURNING movieid
+            priority = $4,
+            imageurl = $5,
+            rating = $6,
+            watcheddate = $7
+        WHERE movieid = $8
+        RETURNING movieid;
     `, [moviename, typeofmovie, description, priority, imageurl, rating, watcheddate, movieid]);
 
-     const movieId = movieResult.rows[0].movieid
+    console.log(movieResult.rows[0])
+    const updatedMovieId = movieResult.rows[0].movieid;
 
-
-     const movie_director = await getAllDirectorsOfSingleMovie(movieId)
-
-     const movie_genre = await getAllGenersIdOfSingleMovie(movieId)
-    // === Director ===
+    // 2. Handle Directors - Delete old + Insert new
     if (director) {
         const directorArray = Array.isArray(director) ? director : [director];
-        for (const directorId of directorArray){
-            for (const director of movie_director){
-                if(directorId != director.directorId){
-                     await pool.query(`
-            INSERT INTO movie_director (directorid, movieid)
-            VALUES ($1, $2)
-                }
-            }         
-        `, [directorId, movieid]);
-           
-        }
-    }
-       
-    }
-    }
-    // === Genres (Array Handling) ===
-    if (geners) {
-       
-        // Convert to array if it's not already (in case single value comes as string)
-        const genreArray = Array.isArray(geners) ? geners : [geners];
 
-        for (const genreId of genreArray) {
-            for (const genre of movie_genre) {
-                if(genreId != genre.genreid)  // skip empty values
+        // Remove all existing directors for this movie
+        await pool.query(`DELETE FROM movie_director WHERE movieid = $1`, [updatedMovieId]);
+
+        // Insert the new selected directors
+        for (const directorId of directorArray) {
+            if (directorId) {
                 await pool.query(`
-                    INSERT INTO movie_genre (genreid, movieid)
+                    INSERT INTO movie_director (directorid, movieid)
                     VALUES ($1, $2)
-                `, [genreId, movieid]);
+                `, [directorId, updatedMovieId]);
             }
         }
     }
 
+    // 3. Handle Genres - Delete old + Insert new
+    if (geners) {
+        const genreArray = Array.isArray(geners) ? geners : [geners];
+
+        // Remove all existing genres for this movie
+        await pool.query(`DELETE FROM movie_genre WHERE movieid = $1`, [updatedMovieId]);
+
+        // Insert the new selected genres
+        for (const genreId of genreArray) {
+            if (genreId) {
+                await pool.query(`
+                    INSERT INTO movie_genre (genreid, movieid)
+                    VALUES ($1, $2)
+                `, [genreId, updatedMovieId]);
+            }
+        }
+    }
+
+    return movieResult.rows[0];
 }
 module.exports = {
     allMovies,

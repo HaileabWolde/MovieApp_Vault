@@ -21,7 +21,7 @@ async function getSingleMovie(req, res){
   const singleMovie = await db.getSpecficMovies(movieid);
   const categories = await db.getAllGenersOfSingleMovie(movieid);
   const directors = await db.getAllDirectorsOfSingleMovie(movieid);
-  console.log("Movie:",  categories);
+
   res.render('singleMovie', {
     title: 'A Single Movie Detail',
     singleMovie: singleMovie,

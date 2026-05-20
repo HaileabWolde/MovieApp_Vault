@@ -6,7 +6,7 @@ const priority = document.getElementById('priority');
 const dateInput = document.getElementById('watcheddate');
 
 
-const regex = /^[a-zA-Z]+$/;
+const regex = /^[A-Za-z\s]+$/;
 //Error
 const movienameError = document.getElementById('movienameError');
 const ratingError = document.getElementById('ratingError');
