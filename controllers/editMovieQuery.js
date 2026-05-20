@@ -6,15 +6,14 @@ async function editMovieForm(req, res){
 
     const movieid = req.params.id
       const singleMovie = await db.getSpecficMovies(movieid);
-      const categories = await db.getAllGenersOfSingleMovie(movieid);
-      const directors = await db.getAallDirectorsIdofSingleMovie(movieid);
+      const categories = await db.getAllGenersIdOfSingleMovie(movieid);
+      const directors = await db.getAllDirectorsIdofSingleMovie(movieid);
         // Use Number() to ensure the result is a number type
 const directorArray= directors.map(obj => Number(obj.directorid)); 
-
-
+const genersArray = categories.map(obj=> Number(obj.genreid))
     const FormData = {
       singleMovie,
-      categories,
+      genersArray ,
        directorArray
     }
  

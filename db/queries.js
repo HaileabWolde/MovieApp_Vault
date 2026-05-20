@@ -61,7 +61,7 @@ async function getAllDirectorsOfSingleMovie(id){
         `)
     return rows;
 }
-async function getAallDirectorsIdofSingleMovie(id){
+async function getAllDirectorsIdofSingleMovie(id){
     const {rows} = await pool.query(`
          SELECT 
  directors.directorid
@@ -69,6 +69,18 @@ async function getAallDirectorsIdofSingleMovie(id){
    JOIN movie_director ON movie_director.directorid = directors.directorid 
     JOIN movies ON movie_director.movieid = movies.movieid
 	WHERE movies.movieid = ${id}
+        `)
+    return rows;
+}
+
+async function getAllGenersIdOfSingleMovie(movieid){
+     const {rows} = await pool.query(`
+        SELECT 
+   genres.genreid
+   FROM genres
+   JOIN movie_genre ON movie_genre.genreid = genres.genreid 
+    JOIN movies ON movie_genre.movieid = movies.movieid
+	WHERE movies.movieid = ${movieid}
         `)
     return rows;
 }
@@ -132,5 +144,6 @@ module.exports = {
     getAllGenersOfSingleMovie,
     getAllDirectorsOfSingleMovie,
     insertNewMovie,
-     getAallDirectorsIdofSingleMovie
+     getAllDirectorsIdofSingleMovie,
+     getAllGenersIdOfSingleMovie
 }

@@ -49,8 +49,9 @@
                         <h1 class="text-3xl font-bold text-zinc-800"><%=FormData?.singleMovie ? 'Editing A Movie' : 'Add New Movie' %></h1>
                     </div>
 
-                    <form method="POST" 
-                    action="/movie/newMovie" 
+                    <form 
+                    method="POST" 
+                    action=" <%= FormData?.singleMovie[0] ? '/movie/editMovie' : '/movie/newMovie' %>" 
                     id="myform" 
                    >
 
@@ -79,10 +80,22 @@
                                     name="typeofmovie"
                                 
                                     class="outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4 text-base transition-all">
-                                    <option value='Movie'>Movie</option>
-                                    <option value="Series">Series</option>
-                                    <option value="Documentary">Documentary</option>
-                                    <option value="Anime">Anime</option>
+                                    <option 
+                                    value='Movie'
+                                      <%= FormData?.singleMovie[0].typeofmovie === 'Movie' ? 'selected' : '' %>
+                                    >Movie</option>
+                                    <option 
+                                    value="Series"
+                                       <%= FormData?.singleMovie[0].typeofmovie === 'Series' ? 'selected' : '' %>
+                                    >Series</option>
+                                    <option 
+                                    value="Documentary"
+                                       <%= FormData?.singleMovie[0].typeofmovie === 'Documentary' ? 'selected' : '' %>
+                                    >Documentary</option>
+                                    <option 
+                                    value="Anime"
+                                       <%= FormData?.singleMovie[0].typeofmovie === 'Anime' ? 'selected' : '' %>
+                                    >Anime</option>
                                 </select>
                             
                             </div>
@@ -96,9 +109,10 @@
                             <textarea
                                 id="description"
                                 name="description"
+                              
                                 rows="3"
                                 class="outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-3xl px-5 py-4 text-base transition-all resize-y"
-                                placeholder="Write a short description..."></textarea>
+                                placeholder=" <%= FormData?.singleMovie[0].description ?  FormData.singleMovie[0].description : 'Write A short description...' %>"></textarea>
                        
                         </div>
 
@@ -111,12 +125,30 @@
                                 <select id="priority" name="priority" 
                                     class="outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4">
                                     
-                                    <option value="1">1 - Low</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5 - High</option>
-                                    <option value="0">Already Watched it </option>
+                                    <option 
+                                    value="1"
+                                     <%= FormData?.singleMovie[0].priority === 1 ? 'selected' : '' %>
+                                    >1 - Low</option>
+                                    <option 
+                                    value="2"
+                                     <%= FormData?.singleMovie[0].priority === 2 ? 'selected' : '' %> 
+                                    >2</option>
+                                    <option 
+                                    value="3"
+                                     <%= FormData?.singleMovie[0].priority === 3 ? 'selected' : '' %>
+                                    >3</option>
+                                    <option 
+                                    value="4"
+                                       <%= FormData?.singleMovie[0].priority === 4 ? 'selected' : '' %>
+                                    >4</option>
+                                    <option 
+                                    value="5"
+                                     <%= FormData?.singleMovie[0].priority === 5 ? 'selected' : '' %>
+                                    >5 - High</option>
+                                    <option 
+                                    value="0"
+                                     <%= FormData?.singleMovie[0].priority === 0 ? 'selected' : '' %>
+                                    >Already Watched it </option>
                                 </select>
                             </div>
 
@@ -172,7 +204,9 @@
                                             type="checkbox" 
                                             name="geners[]" 
                                             value="<%= genre.genreid%>"
-                                            class="outline-none w-5 h-5 accent-violet-600">
+                                            class="outline-none w-5 h-5 accent-violet-600"
+                                                <%= FormData?.genersArray.includes(genre.genreid) ? 'checked' : '' %>
+                                            >
                                         <span class="text-zinc-700 group-hover:text-violet-700 transition-colors">
                                             <%= genre.genername %>
                                         </span>
@@ -220,7 +254,7 @@
                             <button type="submit"
                                 class="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold text-lg py-5 rounded-2xl transition-all duration-200 flex items-center justify-center gap-3 shadow-lg shadow-violet-500/30">
                                 <i class="fa-solid fa-plus"></i>
-                                Add Movie
+                              <%= FormData?.singleMovie[0] ? 'Edit A Movie' : 'Add  Movie' %>
                             </button>
                         </div>
                         </div>
