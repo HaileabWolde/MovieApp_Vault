@@ -155,41 +155,50 @@ async function editExistingMovie(
             rating = $6 ,
              watcheddate = $7
           WHERE movieid = $8
-       
+          RETURNING movieid
     `, [moviename, typeofmovie, description, priority, imageurl, rating, watcheddate, movieid]);
 
-   
+     const movieId = movieResult.rows[0].movieid
+
+
+     const movie_director = await getAllDirectorsOfSingleMovie(movieId)
+
+     const movie_genre = await getAllGenersIdOfSingleMovie(movieId)
     // === Director ===
     if (director) {
         const directorArray = Array.isArray(director) ? director : [director];
         for (const directorId of directorArray){
-            if(directorId){
-                 await pool.query(`
+            for (const director of movie_director){
+                if(directorId != director.directorId){
+                     await pool.query(`
             INSERT INTO movie_director (directorid, movieid)
             VALUES ($1, $2)
+                }
+            }         
         `, [directorId, movieid]);
-            }
+           
         }
+    }
        
     }
-
+    }
     // === Genres (Array Handling) ===
     if (geners) {
-        console.log(geners)
+       
         // Convert to array if it's not already (in case single value comes as string)
         const genreArray = Array.isArray(geners) ? geners : [geners];
 
         for (const genreId of genreArray) {
-            if (genreId) {  // skip empty values
+            for (const genre of movie_genre) {
+                if(genreId != genre.genreid)  // skip empty values
                 await pool.query(`
                     INSERT INTO movie_genre (genreid, movieid)
                     VALUES ($1, $2)
-                `, [genreId,movieid]);
+                `, [genreId, movieid]);
             }
         }
     }
 
- 
 }
 module.exports = {
     allMovies,
