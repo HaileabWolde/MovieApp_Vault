@@ -49,6 +49,7 @@ async function insertNewMovie(req, res, next) {
                 allDirectors: allDirectors,
                 allGeners: allGeners,
                 error: `A movie titled ${moviename} already exists!`,
+                FormData: null
                 
             });
         }

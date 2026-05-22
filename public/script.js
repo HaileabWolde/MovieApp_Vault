@@ -5,11 +5,44 @@ const rating = document.getElementById('rating');
 const priority = document.getElementById('priority');
 const dateInput = document.getElementById('watcheddate');
 
+//dialgo Showing Logic 
+
+
+const dialog = document.getElementById('dialog')
+const dialogModal = document.getElementById('dialogModal')
+const cancelButton = document.getElementById('cancelButton')
+const deleteButtons = document.querySelectorAll('.delete-btn'); 
+const movieIdInput = document.getElementById('movieIdInput');
 
 const regex = /^[A-Za-z\s]+$/;
+
+
 //Error
 const movienameError = document.getElementById('movienameError');
 const ratingError = document.getElementById('ratingError');
+
+
+// Open dialog when delete button is clicked
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent row click if any
+            
+            const movieId = button.dataset.movieId;
+            movieIdInput.value = movieId;
+         
+            dialogModal.classList.remove('hidden');
+            dialog.showModal(); // Native dialog API
+             
+        });
+    });
+
+
+//Cance the modal dialog
+cancelButton.addEventListener('click', ()=> {
+      dialog.close()
+      dialogModal.classList.add('hidden');        // stops form submission
+    
+})
 
 const validateForm = (event) => {
     event.preventDefault();
