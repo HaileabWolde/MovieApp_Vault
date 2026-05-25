@@ -24,6 +24,9 @@ indexRouter.get('/geners/:genername/:id', getSingleGener)
 indexRouter.get('/directors', getALLDirector)
 indexRouter.get('/director/:directorname/:id', getDirectorMovies)
 
+
+
+
 // POST
 indexRouter.post('/movie/newMovie', insertNewMovie)
 indexRouter.post('/movie/editMovie/:id', editMovie)

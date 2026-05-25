@@ -199,18 +199,20 @@ async function editExistingMovie(
     return movieResult.rows[0];
 }
 
-async function deleteMovie(movieid){
+async function deleteSingleMovie(movieid) {
+  
     
-        // Remove the movie for  movie catalog
+    try {
+        await pool.query(`DELETE FROM movie_genre WHERE movieid = $1`, [movieid]);
+        await pool.query(`DELETE FROM movie_director WHERE movieid = $1`, [movieid]);
         await pool.query(`DELETE FROM movies WHERE movieid = $1`, [movieid]);
 
-         // Remove all existing directors for this movie
-        await pool.query(`DELETE FROM movie_director WHERE movieid = $1`, [movieid]);
-
-
-         // Remove all existing genres for this movie
-        await pool.query(`DELETE FROM movie_genre WHERE movieid = $1`, [movieid]);
-
+       
+    } 
+    catch (error) {
+        console.error("Delete Movie Error:", error);
+        res.status(500).send("Error deleting movie");
+    }
 }
 module.exports = {
     allMovies,
@@ -223,5 +225,5 @@ module.exports = {
      getAllDirectorsIdofSingleMovie,
      getAllGenersIdOfSingleMovie,
      editExistingMovie,
-     deleteMovie
+    deleteSingleMovie
 }

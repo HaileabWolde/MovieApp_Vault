@@ -91,7 +91,6 @@ const validateForm = (event) => {
 
 const deleteMovie = (event)=>{
        event.preventDefault();
-      mydialogform.action = `/movie/delete`
        mydialogform.submit();
 }
 

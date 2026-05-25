@@ -50,10 +50,11 @@ async function editMovie(req, res){
 }
 
 async function deleteMovie(req, res){
-   const movieid = req.body.movieid;   // ← Get from body instead of params
+     const movieid = req.body.movieid;
+  
    try{
-        await db.deleteMovie(movieid)
-   res.redirect("/movies")
+        await db.deleteSingleMovie(movieid)
+       res.redirect('/movies'); // ← THIS WAS MISSING
    }
    catch(error){
       console.error("Insert Movie Error:", error);
