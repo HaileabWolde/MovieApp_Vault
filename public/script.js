@@ -1,5 +1,8 @@
 
 const myform = document.getElementById('myform');
+const mydialogform = document.getElementById('mydialogform')
+
+//
 const moviename = document.getElementById('moviename');
 const rating = document.getElementById('rating');
 const priority = document.getElementById('priority');
@@ -29,7 +32,7 @@ const ratingError = document.getElementById('ratingError');
             
             const movieId = button.dataset.movieId;
             movieIdInput.value = movieId;
-         
+        
             dialogModal.classList.remove('hidden');
             dialog.showModal(); // Native dialog API
              
@@ -86,4 +89,11 @@ const validateForm = (event) => {
        
 };
 
+const deleteMovie = (event)=>{
+       event.preventDefault();
+      mydialogform.action = `/movie/delete`
+       mydialogform.submit();
+}
+
 myform.addEventListener('submit', validateForm);
+mydialogform.addEventListener('submit', deleteMovie);

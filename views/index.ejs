@@ -11,8 +11,10 @@
 </head>
 <body class="m-0">
     <!-- dialoag MODAL-->
- <div id="dialogModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center ">
-    <input type="hidden" name="movieid" id="movieIdInput" value="">
+ <div 
+ id="dialogModal" 
+ class="hidden fixed inset-0 bg-black/70 flex items-center justify-center ">
+   
     <dialog 
     id="dialog"
     class="justify-self-center bg-white rounded-3xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
@@ -24,10 +26,10 @@
         
         <!-- Body -->
         <form
-        method="DELETE" 
-        action="/delete" 
-        id="myform"
+         method="POST" 
+        id="mydialogform"
         class="p-8 text-center flex justify-between">
+         <input type="hidden" name="movieid" id="movieIdInput" value="">
             <button 
                    type="submit" 
                    class="submit">Submit</button>

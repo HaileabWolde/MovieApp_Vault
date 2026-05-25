@@ -48,7 +48,20 @@ async function editMovie(req, res){
     res.redirect("/movies")
 
 }
+
+async function deleteMovie(req, res){
+   const movieid = req.body.movieid;   // ← Get from body instead of params
+   try{
+        await db.deleteMovie(movieid)
+   res.redirect("/movies")
+   }
+   catch(error){
+      console.error("Insert Movie Error:", error);
+   }
+ 
+}
 module.exports = {
     editMovieForm,
-    editMovie
+    editMovie,
+    deleteMovie
 }
