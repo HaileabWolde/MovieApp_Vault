@@ -12,6 +12,17 @@ async function addNewDirector(req, res) {
     }
     catch (error){
         console.error("Director", error)
+        // Handle Duplicate Movie Error (PostgreSQL)
+                if (error.code === '23505' || error.constraint === 'unique_director_name') {
+                    
+                    return res.render('Form/addDirectorForm', {
+                        title: 'Add New Movie',
+                        error: `${directorname} already exists!`,
+    
+                    });
+                }
+        // For any other real error, pass to your error middleware
+        next(error);
     }
 }
 
