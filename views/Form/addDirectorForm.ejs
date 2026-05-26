@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+    
+    <title>Add New Movie</title>
+</head>
+<body>
+    <div id="errorModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center ">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
+        <!-- Header -->
+        <div class="bg-red-600 px-6 py-4 text-white flex items-center gap-3">
+            <i class="fa-solid fa-circle-exclamation text-2xl"></i>
+            <h3 class="font-semibold text-lg">Duplicate Director</h3>
+        </div>
+        
+        <!-- Body -->
+        <div class="p-8 text-center">
+            <p id="modalErrorMessage" class="text-zinc-700 text-lg leading-relaxed">
+                <!-- Error message injected here -->
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="border-t px-6 py-4 flex justify-end">
+            <button onclick="closeModal()" 
+                    class="bg-zinc-800 hover:bg-zinc-900 text-white px-8 py-3 rounded-2xl font-medium transition-all">
+                Try Another Name
+            </button>
+        </div>
+    </div>
+</div>
+<div class="grid grid-cols-[20%_80%] h-screen w-full">
+    <!-- Sidebar -->
+     <%- include('../sideBar') %>
+     <div
+     class="bg-zinc-100 overflow-auto  flex  flex-col  justify-center "
+     >
+        <div class="bg-white shadow-xl rounded-xl p-12 border-2  justify-around w-full max-w-2xl mx-auto">
+           
+              <form 
+                    method="POST" 
+                    action="/director/add" 
+                    id="mydirectorform" 
+                    class="flex flex-col gap-8"
+                   >
+                          <h1 class="text-3xl font-bold text-zinc-800">Add New Director</h1>
+                         <span>
+                                <label for="directorname" class="block text-sm font-medium text-zinc-700 mb-2">
+                                 Director Name
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="directorname" 
+                                    name="directorname"
+                                
+                                    placeholder="Enter Director name"
+                                    class=" outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4 text-base transition-all">
+                             
+            </span>
+                <button
+                type="submit"
+                 class="self-end  w-[50%] bg-violet-600 hover:bg-violet-700 text-white font-semibold text-lg py-3 rounded-2xl transition-all duration-200 flex items-center justify-center gap-3 shadow-lg shadow-violet-500/30">
+                 <i class="fa-solid fa-plus"></i>
+                 <h1>Add Director</h1>
+                </button>
+                   </form>
+           
+        </div>
+    </div>
+</div>
+</body>
+</html>

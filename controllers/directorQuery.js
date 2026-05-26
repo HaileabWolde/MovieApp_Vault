@@ -24,7 +24,16 @@ async function getDirectorMovies(req, res){
   )
 }
 
+async function addDirectorForm(req, res){
+   res.render('Form/addDirectorForm',
+    {
+        title: 'Mini Messageboard',
+    }
+   )
+}
+
 module.exports = {
   getALLDirector,
   getDirectorMovies,
+  addDirectorForm
 };

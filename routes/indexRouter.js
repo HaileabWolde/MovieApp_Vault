@@ -4,7 +4,7 @@ const { getAllMovies,
 } = require("../controllers/movieQuery")
 
 const {getAllGeners, getSingleGener } = require("../controllers/genersQuery")
-const {getALLDirector, getDirectorMovies} = require("../controllers/directorQuery")
+const {getALLDirector, getDirectorMovies, addDirectorForm} = require("../controllers/directorQuery")
 const {addMovieForm, insertNewMovie} = require("../controllers/addMovieQuery")
 
 const {editMovieForm, editMovie, deleteMovie}  = require("../controllers/editMovieQuery")
@@ -14,6 +14,13 @@ const indexRouter = Router();
 // GET routes - Put more specific routes FIRST
 indexRouter.get('/movies', getAllMovies)
 indexRouter.get('/movies/add', addMovieForm)
+
+
+//GET ROUTES FORM FOR A DIRECTOR
+
+indexRouter.get('/directors/add', addDirectorForm)
+
+
 
 // These two should come before the generic :id route
 indexRouter.get('/movies/edit/:id', editMovieForm)
