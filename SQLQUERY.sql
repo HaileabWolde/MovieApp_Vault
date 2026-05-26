@@ -7,10 +7,32 @@ SELECT * FROM GENRES
 SELECT * FROM MOVIE_GENRE
 SELECT * FROM MOVIE_DIRECTOR
 
-UPDATE movies
-SET moviename = 'Django Unchained',
-	priority = 3
-WHERE movieid = 1;
+
+ALTER TABLE directors
+    ALTER COLUMN directorname SET NOT NULL;
+
+//
+ALTER TABLE directors
+ADD CONSTRAINT unique_director_name UNIQUE (directorname);
+
+
+//
+SELECT 
+    constraint_name, 
+    constraint_type
+FROM 
+    information_schema.table_constraints
+WHERE 
+    table_name = 'directors';
+
+
+
+  SELECT 
+   *
+   FROM genres
+   JOIN movie_genre ON movie_genre.genreid = genres.genreid 
+    JOIN movies ON movie_genre.movieid = movies.movieid
+	WHERE movies.movieid = 2
 
  SELECT *
         FROM directors
@@ -200,4 +222,13 @@ FROM information_schema.table_constraints
 WHERE table_name = 'MOVIES' 
   AND constraint_type = 'UNIQUE KEY';
 
+
+ 
+SELECT constraint_name 
+FROM information_schema.table_constraints 
+WHERE table_name = 'directors' 
+  AND constraint_type = 'UNIQUE KEY';
+
+
+ 
   DELETE FROM movies WHERE movieid IN (10, 11, 12,13,14, 15, 16, 17, 18, 19, 20, 21, 22,23, 24, 25)

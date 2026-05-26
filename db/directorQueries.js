@@ -22,8 +22,16 @@ async function allDirectorsNames(){
         `)
     return rows;
 }
+
+async function insertNewDirector(directorname){
+    const directorResult = await pool.query(`
+        INSERT INTO directors (directorname)
+        VALUES ($1)
+        `, [directorname])
+}
 module.exports = {
     getALLDirectorNames,
     getDirectorMovies,
-    allDirectorsNames
+    allDirectorsNames,
+    insertNewDirector
 }
