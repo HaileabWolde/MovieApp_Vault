@@ -28,6 +28,7 @@
         <!-- Footer -->
         <div class="border-t px-6 py-4 flex justify-end">
             <button 
+           onclick="closeModal()"
                     class="bg-zinc-800 hover:bg-zinc-900 text-white px-8 py-3 rounded-2xl font-medium transition-all">
                 Try Another Name
             </button>
@@ -46,6 +47,7 @@
                     method="POST" 
                     action="/genres/add"
                     class="flex flex-col gap-8"
+                      id="myform" 
                    >
                           <h1 class="text-3xl font-bold text-zinc-800">Add New Genre</h1>
                          <span>
@@ -73,7 +75,28 @@
         </div>
     </div>
 </div>
+<script>
+    // Show error modal if error exists
+    window.onload = function() {
+        const error = "<%- error || '' %>";
+        if (error) {
+            
+            document.getElementById('modalErrorMessage').innerHTML = error;
+            document.getElementById('errorModal').classList.remove('hidden');
+        }
+    }
 
+    function closeModal() {
+        document.getElementById('errorModal').classList.add('hidden');
+    }
+
+    // Optional: Close modal when pressing Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === "Escape") {
+            closeModal();
+        }
+    });
+</script>
  <script src="/genre.js"></script>
 </body>
 </html>

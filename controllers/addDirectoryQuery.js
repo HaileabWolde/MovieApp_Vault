@@ -16,7 +16,7 @@ async function addNewDirector(req, res) {
                 if (error.code === '23505' || error.constraint === 'unique_director_name') {
                     
                     return res.render('Form/addDirectorForm', {
-                        title: 'Add New Movie',
+                        title: 'Add New Director',
                         error: `${directorname} already exists!`,
     
                     });

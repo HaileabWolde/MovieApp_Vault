@@ -30,13 +30,24 @@ async function getGenreForm(req, res){
 
 async function insertGenreForm(req, res){
   const {genrename} = req.body;
-  console.log(genrename)
+ 
   try{
     await db.insertNewGenre(genrename)
     res.redirect('/geners')
   }
   catch(error){
-    console.log('Eroor', error)
+    console.log('Genre', error)
+      // Handle Duplicate Movie Error (PostgreSQL)
+                if (error.code === '23505' || error.constraint === 'unique_genre_name') {
+                    
+                    return res.render('Form/addGenreForm', {
+                        title: 'Add New Genre',
+                        error: `${genrename} genre already exists!`,
+    
+                    });
+                }
+        // For any other real error, pass to your error middleware
+        next(error);
   }
 
 }
