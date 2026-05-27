@@ -48,6 +48,12 @@ indexRouter.post('/movie/editMovie/:id', editMovie)
 
 
 // POST 
+
+indexRouter.post('/genres/add', (req, res)=>{
+    res.send("Fuck U bitch")
+})
+
+// POST 
 indexRouter.post('/director/add', addNewDirector)
 indexRouter.post('/director/editdirector/:id', editDirector)
 
