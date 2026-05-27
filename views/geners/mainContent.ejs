@@ -1,7 +1,17 @@
 <div class="bg-zinc-100 overflow-auto pt-4 px-4 pb-2 flex  flex-col gap-8 min-h-screen">
-    <div class="bg-white pb-8 shadow-xl rounded-xl  border-2 flex flex-col justify-center py-8 px-3">
-                   <h1 class="text-3xl font-bold ">Geners</h1>
+    <div class="bg-white pb-8 shadow-xl rounded-xl  border-2 flex justify-between  py-8 px-3">
+        <span>
+             <h1 class="text-3xl font-bold ">Geners</h1>
                     <p class="text-gray-500">Showing <%=geners.length%> Geners</p>
+        </span>
+          <a
+                class="flex items-center bg-blue-500 px-4 py-1 gap-4 rounded-xl" 
+                href="/genres/add">
+                  <i
+                          
+                        class="fa-solid fa-plus text-white"></i>
+                        <h1 class="text-white font-bold text-lg">Add A Genre</h1>
+                </a>         
     </div>
     <div class="bg-white  shadow-xl rounded-xl border-2 flex flex-col gap-2 justify-between cursor-pointer">
         <%geners.map((gener)=> {

@@ -20,7 +20,15 @@ async function getSingleGener(req, res){
     genername: genername
   })
 }
+
+async function getGenreForm(req, res){
+  res.render("Form/addGenreForm", {
+    title: 'Mini Messageboard',
+    error: null
+  })
+}
 module.exports = {
 getAllGeners,
-getSingleGener
+getSingleGener,
+getGenreForm
 };
