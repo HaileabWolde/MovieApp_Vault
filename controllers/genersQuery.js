@@ -1,7 +1,7 @@
 const db = require("../db/genersQueries");
 async function getAllGeners(req, res){
   const geners = await db.getAllGeners()
-  console.log("geners", geners)
+
   res.render('geners/gener', {
     title: 'Mini Messageboard',
     geners: geners

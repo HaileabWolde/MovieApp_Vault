@@ -14,7 +14,7 @@ async function getDirectorMovies(req, res){
   const directorname = req.params.directorname
 
   const singleDirector = await db.getDirectorMovies(directorid)
-  console.log("director", singleDirector)
+ 
   res.render(
     'Director/singleDirector/eachdirector', {
       title: 'Mini Messageboard',
@@ -33,9 +33,19 @@ async function addDirectorForm(req, res){
     }
    )
 }
-
+async function deleteDirector(req, res){
+  const {directorid} = req.body;
+  try{
+    await db.deleteSingleDirector(directorid)
+    res.redirect('/directors')
+  }
+  catch(error){
+    console.log('Error', error)
+  }
+}
 module.exports = {
   getALLDirector,
   getDirectorMovies,
-  addDirectorForm
+  addDirectorForm,
+  deleteDirector
 };

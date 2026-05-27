@@ -45,11 +45,26 @@ async function editSingleDirector(directorid, directorname){
         WHERE directorid = $1
         `, [directorid, directorname])
 }
+
+async function deleteSingleDirector(directorid) {
+    try{
+           await pool.query('DELETE FROM movie_director WHERE directorid = $1', [directorid])
+           await pool.query(`DELETE FROM directors WHERE directorid = $1`, [directorid])
+ 
+    }
+    catch(error){
+         console.error("Delete Movie Error:", error);
+        res.status(500).send("Error deleting movie");
+    }
+    
+
+}
 module.exports = {
     getALLDirectorNames,
     getDirectorMovies,
     allDirectorsNames,
     insertNewDirector,
     searchSingleDirector,
-    editSingleDirector
+    editSingleDirector,
+    deleteSingleDirector
 }

@@ -157,7 +157,7 @@ async function editExistingMovie(
         RETURNING movieid;
     `, [moviename, typeofmovie, description, priority, imageurl, rating, watcheddate, movieid]);
 
-    console.log(movieResult.rows[0])
+  
     const updatedMovieId = movieResult.rows[0].movieid;
 
     // 2. Handle Directors - Delete old + Insert new

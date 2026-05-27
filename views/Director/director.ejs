@@ -10,6 +10,36 @@
     <title>Inventory Application</title>
 </head>
 <body class="m-0">
+    <div 
+ id="dialogModal" 
+ class="hidden fixed inset-0 bg-black/70 flex items-center justify-center ">
+   
+    <dialog 
+    id="dialog"
+    class="justify-self-center bg-white rounded-3xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
+        <!-- Header -->
+        <div class="bg-red-600 px-6 py-4 text-white flex items-center gap-3">
+            <i class="fa-solid fa-circle-exclamation text-2xl"></i>
+            <h3 class="font-semibold text-lg">Are You Sure You Want To Delete This Director?</h3>
+        </div>
+        
+        <!-- Body -->
+        <form
+         method="POST" 
+        action="/director/delete"
+        id="mydialogform"
+        class="p-8 text-center flex justify-between">
+         <input type="hidden" name="directorid" id="directorIdInput" value="">
+            <button 
+                   type="submit">Delete</button>
+            <button
+                   type="button"  
+                   id="cancelButton">Cancel</button>
+        </form>
+
+      
+    </dialog>
+</div>
     <div class="grid grid-cols-[20%_80%] h-screen w-full">
         <%- include('../sideBar') %>
         <div class="bg-zinc-100 overflow-auto pt-8 px-4 pb-2 flex flex-col gap-8 min-h-screen">
@@ -42,7 +72,11 @@
                                    class="text-gray-500">
                                          <i class="fas fa-edit"></i>
                                    </a>
-                                  <button class="text-gray-500">
+                                  <button
+                                  id="deleteDirectorButton" 
+                                  class="delete-btn text-gray-500"
+                                   data-director-id="<%= eachdirector.directorid%>"
+                                  >
                                          <i class="fa-solid fa-trash"></i>
                                 </button>
                              </div>
@@ -52,6 +86,6 @@
                  </div>
         </div>
     </div>
-    
+    <script  src="/director.js"></script>
 </body>
 </html>
