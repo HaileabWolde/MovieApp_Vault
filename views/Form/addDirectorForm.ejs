@@ -44,7 +44,7 @@
            
               <form 
                     method="POST" 
-                    action="/director/add" 
+                    action="<%=singleDirector ? `/director/editdirector/${singleDirector[0].directorid}` : '/director/add' %>" 
                     id="mydirectorform" 
                     class="flex flex-col gap-8"
                    >
@@ -57,7 +57,7 @@
                                     type="text" 
                                     id="directorname" 
                                     name="directorname"
-                                    value="<%=singleDirector[0]?.directorname%>"
+                                    value="<%=singleDirector?.[0].directorname%>"
                                     placeholder="Enter Director name"
                                     class=" outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4 text-base transition-all">
                                        <span id="directornameError" class="text-red-500 text-sm mt-1"></span>

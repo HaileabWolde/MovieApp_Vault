@@ -9,7 +9,7 @@ const {addMovieForm, insertNewMovie} = require("../controllers/addMovieQuery")
 
 const {editMovieForm, editMovie, deleteMovie}  = require("../controllers/editMovieQuery")
 
-const {addNewDirector, editExistingDirector} = require("../controllers/addDirectoryQuery")
+const {addNewDirector, editExistingDirector, editDirector} = require("../controllers/addDirectoryQuery")
 const indexRouter = Router();
 
 
@@ -45,6 +45,7 @@ indexRouter.post('/movie/editMovie/:id', editMovie)
 
 // POST 
 indexRouter.post('/director/add', addNewDirector)
+indexRouter.post('/director/editdirector/:id', editDirector)
 
 //DELETE
 indexRouter.post('/movie/delete', deleteMovie)

@@ -44,7 +44,24 @@ async function editExistingDirector(req, res){
     }
 }
 
+async function editDirector(req, res){
+    const directorid = req.params.id
+  
+   const {
+        directorname
+    } = req.body
+ 
+    try {
+        await db.editSingleDirector(directorid , directorname)
+         res.redirect("/directors");
+    }
+    catch(error){
+        console.log('Error', error)
+    }
+}
+
 module.exports = {
     addNewDirector,
-    editExistingDirector
+    editExistingDirector,
+    editDirector
 }

@@ -37,10 +37,19 @@ async function searchSingleDirector(directorid){
 
         return rows;
 }
+
+async function editSingleDirector(directorid, directorname){
+    const {rows} = await pool.query(`
+        UPDATE DIRECTORS
+        SET directorname = $2
+        WHERE directorid = $1
+        `, [directorid, directorname])
+}
 module.exports = {
     getALLDirectorNames,
     getDirectorMovies,
     allDirectorsNames,
     insertNewDirector,
-    searchSingleDirector
+    searchSingleDirector,
+    editSingleDirector
 }
