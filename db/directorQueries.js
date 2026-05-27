@@ -29,9 +29,18 @@ async function insertNewDirector(directorname){
         VALUES ($1)
         `, [directorname])
 }
+
+async function searchSingleDirector(directorid){
+    const {rows} = await pool.query(`
+        SELECT * FROM directors WHERE directorid = ${directorid}
+        `)
+
+        return rows;
+}
 module.exports = {
     getALLDirectorNames,
     getDirectorMovies,
     allDirectorsNames,
-    insertNewDirector
+    insertNewDirector,
+    searchSingleDirector
 }

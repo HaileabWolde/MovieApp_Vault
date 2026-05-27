@@ -48,7 +48,7 @@
                     id="mydirectorform" 
                     class="flex flex-col gap-8"
                    >
-                          <h1 class="text-3xl font-bold text-zinc-800">Add New Director</h1>
+                          <h1 class="text-3xl font-bold text-zinc-800"><%= singleDirector ? 'Edit Existing Director' : 'Add New Director'%></h1>
                          <span>
                                 <label for="directorname" class="block text-sm font-medium text-zinc-700 mb-2">
                                  Director Name
@@ -57,7 +57,7 @@
                                     type="text" 
                                     id="directorname" 
                                     name="directorname"
-                                
+                                    value="<%=singleDirector[0]?.directorname%>"
                                     placeholder="Enter Director name"
                                     class=" outline-none w-full border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-2xl px-5 py-4 text-base transition-all">
                                        <span id="directornameError" class="text-red-500 text-sm mt-1"></span>
@@ -67,7 +67,7 @@
                 type="submit"
                  class="self-end  w-[50%] bg-violet-600 hover:bg-violet-700 text-white font-semibold text-lg py-3 rounded-2xl transition-all duration-200 flex items-center justify-center gap-3 shadow-lg shadow-violet-500/30">
                  <i class="fa-solid fa-plus"></i>
-                 <h1>Add Director</h1>
+                <h1 ><%= singleDirector ? 'Edit Director' : 'Add A Director'%></h1>
                 </button>
                    </form>
            

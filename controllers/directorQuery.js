@@ -28,7 +28,8 @@ async function addDirectorForm(req, res){
    res.render('Form/addDirectorForm',
     {
         title: 'Mini Messageboard',
-         error: null,        // ← Important
+         error: null,     
+         singleDirector: null   // ← Important
     }
    )
 }

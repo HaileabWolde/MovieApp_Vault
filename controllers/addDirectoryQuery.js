@@ -5,7 +5,7 @@ async function addNewDirector(req, res) {
         directorname
     } = req.body
 
-    console.log(directorname)
+   
     try {
         await db.insertNewDirector(directorname)
          res.redirect("/directors");
@@ -26,6 +26,25 @@ async function addNewDirector(req, res) {
     }
 }
 
+async function editExistingDirector(req, res){
+    const {id} = req.params
+    try{
+       const singleDirector =  await db.searchSingleDirector(id)
+
+        res.render('Form/addDirectorForm', {
+               title: 'Mini Messageboard',
+       
+         singleDirector: singleDirector    ,
+           error: null,    // ← Important
+
+        })
+    }
+    catch(error){
+        console.log("Error", error)
+    }
+}
+
 module.exports = {
-    addNewDirector
+    addNewDirector,
+    editExistingDirector
 }

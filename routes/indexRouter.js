@@ -9,7 +9,7 @@ const {addMovieForm, insertNewMovie} = require("../controllers/addMovieQuery")
 
 const {editMovieForm, editMovie, deleteMovie}  = require("../controllers/editMovieQuery")
 
-const {addNewDirector} = require("../controllers/addDirectoryQuery")
+const {addNewDirector, editExistingDirector} = require("../controllers/addDirectoryQuery")
 const indexRouter = Router();
 
 
@@ -34,7 +34,9 @@ indexRouter.get('/directors', getALLDirector)
 indexRouter.get('/director/:directorname/:id', getDirectorMovies)
 
 
+//direcotr post routes
 
+indexRouter.get('/editdirector/:id', editExistingDirector)
 
 // POST
 indexRouter.post('/movie/newMovie', insertNewMovie)
