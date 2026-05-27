@@ -8,14 +8,19 @@ SELECT * FROM MOVIE_GENRE
 SELECT * FROM MOVIE_DIRECTOR
 
 
+DELETE FROM GENRES WHERE genreid = 16
 ALTER TABLE directors
     ALTER COLUMN directorname SET NOT NULL;
 
+DELETE TABLE directors
+	ALT
 //
 ALTER TABLE directors
 ADD CONSTRAINT unique_director_name UNIQUE (directorname);
 
-
+//
+ALTER TABLE GENRES
+ADD CONSTRAINT unique_genre_name UNIQUE (genername);
 //
 SELECT 
     constraint_name, 
@@ -23,7 +28,7 @@ SELECT
 FROM 
     information_schema.table_constraints
 WHERE 
-    table_name = 'directors';
+    table_name = 'genres';
 
 
 
@@ -56,6 +61,11 @@ VALUES
 UPDATE movies
 SET priority = 5
 WHERE movieid = 1;
+
+SELECT * FROM directors
+UPDATE directors
+SET directorname = 'Quentin Tarantin0'
+WHERE directorid = 1;
 
 INSERT INTO directors (directorname)
 VALUES 

@@ -27,8 +27,22 @@ async function getGenreForm(req, res){
     error: null
   })
 }
+
+async function insertGenreForm(req, res){
+  const {genrename} = req.body;
+  console.log(genrename)
+  try{
+    await db.insertNewGenre(genrename)
+    res.redirect('/geners')
+  }
+  catch(error){
+    console.log('Eroor', error)
+  }
+
+}
 module.exports = {
 getAllGeners,
 getSingleGener,
-getGenreForm
+getGenreForm,
+insertGenreForm
 };

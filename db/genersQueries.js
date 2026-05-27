@@ -21,8 +21,16 @@ async function getAllGenersNames(){
         `)
     return rows;
 }
+
+async function insertNewGenre(genrename){
+    const genreResult = await pool.query(`
+        INSERT INTO GENRES (genername)
+        VALUES ($1)
+        `, [genrename])
+}
 module.exports = {  
     getAllGeners,
     getSingleGener,
-    getAllGenersNames
+    getAllGenersNames,
+    insertNewGenre
 }

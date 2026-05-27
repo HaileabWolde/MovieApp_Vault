@@ -3,7 +3,8 @@ const { getAllMovies,
     getSingleMovie
 } = require("../controllers/movieQuery")
 
-const {getAllGeners, getSingleGener, getGenreForm } = require("../controllers/genersQuery")
+const {getAllGeners, getSingleGener, 
+    getGenreForm, insertGenreForm } = require("../controllers/genersQuery")
 const {getALLDirector, getDirectorMovies, 
     addDirectorForm, deleteDirector} = require("../controllers/directorQuery")
 const {addMovieForm, insertNewMovie} = require("../controllers/addMovieQuery")
@@ -49,9 +50,7 @@ indexRouter.post('/movie/editMovie/:id', editMovie)
 
 // POST 
 
-indexRouter.post('/genres/add', (req, res)=>{
-    res.send("Fuck U bitch")
-})
+indexRouter.post('/genres/add', insertGenreForm)
 
 // POST 
 indexRouter.post('/director/add', addNewDirector)
