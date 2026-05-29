@@ -85,11 +85,23 @@ async function editSingleGenre(req, res){
     console.log('Error', error)
   }
 }
+
+async function deleteGenre(req, res){
+  const {genreid} = req.body;
+  try{
+    await db.deleteGenre(genreid)
+    res.redirect('/geners')
+  }
+  catch(error){
+    console.log('Error', error)
+  }
+}
 module.exports = {
 getAllGeners,
 getSingleGener,
 getGenreForm,
 insertGenreForm,
 editExistingGenre,
-editSingleGenre
+editSingleGenre,
+deleteGenre
 };

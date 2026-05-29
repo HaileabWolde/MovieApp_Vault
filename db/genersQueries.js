@@ -47,11 +47,24 @@ async function editExistingGenre(id, genrename){
         `, [id,  genrename]
     )
 }
+
+async function deleteGenre(genreid){
+    try{
+               await pool.query('DELETE FROM  MOVIE_GENRE WHERE genreid = $1', [genreid])
+               await pool.query(`DELETE FROM GENRES WHERE genreid  = $1`, [genreid])
+     
+        }
+        catch(error){
+             console.error("Delete Movie Error:", error);
+            res.status(500).send("Error deleting movie");
+        }
+}
 module.exports = {  
     getAllGeners,
     getSingleGener,
     getAllGenersNames,
     insertNewGenre,
     editExistingGenreForm,
-    editExistingGenre
+    editExistingGenre,
+    deleteGenre
 }

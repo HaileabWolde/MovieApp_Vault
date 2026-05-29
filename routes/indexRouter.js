@@ -5,7 +5,8 @@ const { getAllMovies,
 
 const {getAllGeners, getSingleGener, 
     getGenreForm, insertGenreForm,
-    editExistingGenre, editSingleGenre
+    editExistingGenre, editSingleGenre,
+    deleteGenre
  } = require("../controllers/genersQuery")
 const {getALLDirector, getDirectorMovies, 
     addDirectorForm, deleteDirector} = require("../controllers/directorQuery")
@@ -58,6 +59,7 @@ indexRouter.post('/director/delete', deleteDirector)
 
 indexRouter.post('/genres/add', insertGenreForm)
 indexRouter.post('/editgenre/:id', editSingleGenre)
+indexRouter.post('/genre/delete',   deleteGenre)
 
 
 
