@@ -24,7 +24,8 @@ async function getSingleGener(req, res){
 async function getGenreForm(req, res){
   res.render("Form/addGenreForm", {
     title: 'Mini Messageboard',
-    error: null
+    error: null,
+     singleGenre: null
   })
 }
 
@@ -51,9 +52,28 @@ async function insertGenreForm(req, res){
   }
 
 }
+
+async function editExistingGenre(req, res){
+  const {id} = req.params
+
+
+  try{
+    const singleGenre = await db.editExistingGenreForm(id)
+    console.log(singleGenre[0])
+    res.render("Form/addGenreForm", {
+    title: 'Mini Messageboard',
+    error: null,
+    singleGenre: singleGenre
+  })
+  }
+  catch(error){
+    console.log("Error", error)
+  }
+}
 module.exports = {
 getAllGeners,
 getSingleGener,
 getGenreForm,
-insertGenreForm
+insertGenreForm,
+editExistingGenre
 };

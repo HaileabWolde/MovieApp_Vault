@@ -4,7 +4,9 @@ const { getAllMovies,
 } = require("../controllers/movieQuery")
 
 const {getAllGeners, getSingleGener, 
-    getGenreForm, insertGenreForm } = require("../controllers/genersQuery")
+    getGenreForm, insertGenreForm,
+    editExistingGenre 
+ } = require("../controllers/genersQuery")
 const {getALLDirector, getDirectorMovies, 
     addDirectorForm, deleteDirector} = require("../controllers/directorQuery")
 const {addMovieForm, insertNewMovie} = require("../controllers/addMovieQuery")
@@ -15,48 +17,48 @@ const {addNewDirector, editExistingDirector, editDirector} = require("../control
 const indexRouter = Router();
 
 
-// GET routes - Put more specific routes FIRST
+// GET routes - For Movies
 indexRouter.get('/movies', getAllMovies)
 indexRouter.get('/movies/add', addMovieForm)
-
-
-//GET ROUTES FORM FOR A DIRECTOR
-
-indexRouter.get('/directors/add', addDirectorForm)
-
-
-
-// These two should come before the generic :id route
 indexRouter.get('/movies/edit/:id', editMovieForm)
 indexRouter.get('/movies/:id', getSingleMovie)
+
+
+//GET ROUTES  FOR A DIRECTOR
+
+indexRouter.get('/directors/add', addDirectorForm)
+indexRouter.get('/directors', getALLDirector)
+indexRouter.get('/director/:directorname/:id', getDirectorMovies)
+indexRouter.get('/editdirector/:id', editExistingDirector)
+
+
+
+//GET ROUTES FOR A GENERS 
 
 indexRouter.get('/geners', getAllGeners)
 indexRouter.get('/geners/:genername/:id', getSingleGener)
 indexRouter.get('/genres/add', getGenreForm)
+indexRouter.get('/editgenre/:id',  editExistingGenre)
 
 
-indexRouter.get('/directors', getALLDirector)
-indexRouter.get('/director/:directorname/:id', getDirectorMovies)
 
-
-//direcotr post routes
-
-indexRouter.get('/editdirector/:id', editExistingDirector)
-
-// POST
+// POST ROUTES FOR MOVIES
 indexRouter.post('/movie/newMovie', insertNewMovie)
 indexRouter.post('/movie/editMovie/:id', editMovie)
+indexRouter.post('/movie/delete', deleteMovie)
 
 
-// POST 
+// POST ROUTES FOR DIRECTORS
+indexRouter.post('/director/add', addNewDirector)
+indexRouter.post('/director/editdirector/:id', editDirector)
+indexRouter.post('/director/delete', deleteDirector)
+
+
+// POST ROUTES FOR GENRES
 
 indexRouter.post('/genres/add', insertGenreForm)
 
-// POST 
-indexRouter.post('/director/add', addNewDirector)
-indexRouter.post('/director/editdirector/:id', editDirector)
 
-//DELETE
-indexRouter.post('/movie/delete', deleteMovie)
-indexRouter.post('/director/delete', deleteDirector)
+
+
 module.exports = indexRouter;
