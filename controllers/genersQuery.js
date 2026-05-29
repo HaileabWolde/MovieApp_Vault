@@ -70,10 +70,26 @@ async function editExistingGenre(req, res){
     console.log("Error", error)
   }
 }
+
+async function editSingleGenre(req, res){
+  const genreid = req.params.id
+  const {
+    genrename
+  } = req.body
+
+  try{
+    await db.editExistingGenre(genreid, genrename)
+      res.redirect('/geners')
+  }
+  catch(error){
+    console.log('Error', error)
+  }
+}
 module.exports = {
 getAllGeners,
 getSingleGener,
 getGenreForm,
 insertGenreForm,
-editExistingGenre
+editExistingGenre,
+editSingleGenre
 };

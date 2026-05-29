@@ -37,10 +37,21 @@ async function editExistingGenreForm(id) {
     return rows;
     
 }
+
+async function editExistingGenre(id, genrename){
+    const {rows} = await pool.query(
+        `
+        UPDATE  GENRES
+        SET genername = $2
+        WHERE genreid = $1
+        `, [id,  genrename]
+    )
+}
 module.exports = {  
     getAllGeners,
     getSingleGener,
     getAllGenersNames,
     insertNewGenre,
-    editExistingGenreForm
+    editExistingGenreForm,
+    editExistingGenre
 }
