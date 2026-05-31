@@ -15,6 +15,15 @@ WHERE directors.directorid = ${id}
         return rows
 }
 
+async function getSearchedDirectors(directorsearch){
+      const {rows} = await pool.query(`
+            SELECT * 
+            FROM directors  
+    WHERE directorname ILIKE '%${directorsearch}%';
+            `)
+        return rows
+    
+}
 async function allDirectorsNames(){
     const {rows} = await pool.query(`
         SELECT *
@@ -66,5 +75,6 @@ module.exports = {
     insertNewDirector,
     searchSingleDirector,
     editSingleDirector,
-    deleteSingleDirector
+    deleteSingleDirector,
+    getSearchedDirectors
 }

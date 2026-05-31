@@ -1,14 +1,22 @@
 const db = require("../db/directorQueries");
 async function getALLDirector(req, res){
   const director = await db.getALLDirectorNames()
-  console.log("Director", director)
+  
   res.render('Director/director', {
     title: 'Mini Messageboard',
     director: director
   })
 }
 
+async function getSearchedDirector(req, res){
+  const {directorsearch} = req.query
+  const searchedDirectors = await db.getSearchedDirectors(directorsearch)
 
+  res.render('Director/director', {
+    title: 'Mini Messageboard',
+    director: searchedDirectors
+  })
+}
 async function getDirectorMovies(req, res){
   const directorid = req.params.id
   const directorname = req.params.directorname
@@ -47,5 +55,6 @@ module.exports = {
   getALLDirector,
   getDirectorMovies,
   addDirectorForm,
+  getSearchedDirector,
   deleteDirector
 };

@@ -38,6 +38,15 @@ WHERE movies.movieid = ${id}`)
     return rows;
 }
 
+async function searchMovies(moviesearch){
+    const {rows} = await pool.query(`
+        SELECT * 
+        FROM movies 
+WHERE moviename ILIKE '%${moviesearch}%';
+        `)
+    return rows
+}
+
 async function getAllGenersOfSingleMovie(id){
     const {rows} = await pool.query(`
         SELECT 
@@ -225,5 +234,6 @@ module.exports = {
      getAllDirectorsIdofSingleMovie,
      getAllGenersIdOfSingleMovie,
      editExistingMovie,
-    deleteSingleMovie
+    deleteSingleMovie,
+    searchMovies
 }

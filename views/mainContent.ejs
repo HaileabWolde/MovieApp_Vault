@@ -5,15 +5,38 @@
                          <h1 class="text-3xl font-bold ">Movies</h1>
                         <p class="text-gray-500">Showing <%=movies.length%> Movies</p>
                     </span>
-                <a
-                class="flex items-center bg-blue-500 px-4 py-1 gap-4 rounded-xl" 
-                href="/movies/add">
-                  <i
+                    <div class="flex gap-4">
+                                <form
+                                method="GET"
+                                action = "/movies/search"
+                                class="flex"
+                                >
+                                      <input 
+                                    type="text" 
+                                    id="moviesearch" 
+                                    name="moviesearch"
+                                    placeholder="Search Movies"
+                                    class=" h-full  w-[75%] outline-none border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-bl-lg rounded-tl-lg px-5 py-2 text-base transition-all">      
+                                    <button
+                                    type="submit"
+                                    class="bg-blue-500 h-full w-[25%] rounded-tr-lg rounded-br-lg"
+                                    >
+                                    <i class="fa fa-search fa-lg text-white" aria-hidden="true"></i>
+
+                                    </button>    
+                                </form>
+                               
+                                <a
+                                 class="flex items-center bg-blue-500 px-4  gap-4 rounded-xl" 
+                                  href="/movies/add">
+                                 <i
                           
-                        class="fa-solid fa-plus text-white"></i>
-                        <h1 class="text-white font-bold text-lg">Add A Movie</h1>
-                </a>
+                                 class="fa-solid fa-plus text-white"></i>
+                                     <h1 class="text-white font-bold text-lg">Add A Movie</h1>
+                                  </a>
                     
+                    </div>
+                
                      
                   
                 </div>

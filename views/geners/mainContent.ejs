@@ -4,14 +4,36 @@
              <h1 class="text-3xl font-bold ">Geners</h1>
                     <p class="text-gray-500">Showing <%=geners.length%> Geners</p>
         </span>
-          <a
+        <div class="flex gap-4">
+                <form
+                                method="GET"
+                                action = "/genres/search"
+                                class="flex"
+                                >
+                                      <input 
+                                    type="text" 
+                                    id="genresearch" 
+                                    name="genresearch"
+                                    placeholder="Search Genres"
+                                    class=" h-full  w-[75%] outline-none border border-zinc-300 focus:border-violet-500 focus:ring-violet-500 rounded-bl-lg rounded-tl-lg px-5 py-2 text-base transition-all">      
+                                    <button
+                                    type="submit"
+                                    class="bg-blue-500 h-full w-[25%] rounded-tr-lg rounded-br-lg"
+                                    >
+                                    <i class="fa fa-search fa-lg text-white" aria-hidden="true"></i>
+
+                                    </button>    
+                                </form>
+                 <a
                 class="flex items-center bg-blue-500 px-4 py-1 gap-4 rounded-xl" 
                 href="/genres/add">
                   <i
                           
                         class="fa-solid fa-plus text-white"></i>
                         <h1 class="text-white font-bold text-lg">Add A Genre</h1>
-                </a>         
+                </a>       
+        </div>
+           
     </div>
     <div class="bg-white  shadow-xl rounded-xl border-2 flex flex-col gap-2 justify-between cursor-pointer">
         <%geners.map((gener)=> {

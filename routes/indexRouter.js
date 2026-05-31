@@ -1,15 +1,15 @@
 const {Router}  = require("express");
 const { getAllMovies, 
-    getSingleMovie
+    getSingleMovie, getSearchedMovies
 } = require("../controllers/movieQuery")
 
 const {getAllGeners, getSingleGener, 
     getGenreForm, insertGenreForm,
     editExistingGenre, editSingleGenre,
-    deleteGenre
+    deleteGenre, getSearchedGeners
  } = require("../controllers/genersQuery")
 const {getALLDirector, getDirectorMovies, 
-    addDirectorForm, deleteDirector} = require("../controllers/directorQuery")
+    addDirectorForm, deleteDirector, getSearchedDirector} = require("../controllers/directorQuery")
 const {addMovieForm, insertNewMovie} = require("../controllers/addMovieQuery")
 
 const {editMovieForm, editMovie, deleteMovie}  = require("../controllers/editMovieQuery")
@@ -21,6 +21,7 @@ const indexRouter = Router();
 // GET routes - For Movies
 indexRouter.get('/movies', getAllMovies)
 indexRouter.get('/movies/add', addMovieForm)
+indexRouter.get('/movies/search', getSearchedMovies)
 indexRouter.get('/movies/edit/:id', editMovieForm)
 indexRouter.get('/movies/:id', getSingleMovie)
 
@@ -29,6 +30,7 @@ indexRouter.get('/movies/:id', getSingleMovie)
 
 indexRouter.get('/directors/add', addDirectorForm)
 indexRouter.get('/directors', getALLDirector)
+indexRouter.get('/director/search', getSearchedDirector)
 indexRouter.get('/director/:directorname/:id', getDirectorMovies)
 indexRouter.get('/editdirector/:id', editExistingDirector)
 
@@ -37,6 +39,7 @@ indexRouter.get('/editdirector/:id', editExistingDirector)
 //GET ROUTES FOR A GENERS 
 
 indexRouter.get('/geners', getAllGeners)
+indexRouter.get('/genres/search', getSearchedGeners)
 indexRouter.get('/geners/:genername/:id', getSingleGener)
 indexRouter.get('/genres/add', getGenreForm)
 indexRouter.get('/editgenre/:id',  editExistingGenre)

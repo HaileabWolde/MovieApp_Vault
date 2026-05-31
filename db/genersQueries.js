@@ -15,6 +15,15 @@ async function getSingleGener(id){
     return rows
 }
 
+async function getSearchedGenres(genresearch) {
+ const {rows} = await pool.query(`
+            SELECT * 
+            FROM GENRES 
+    WHERE genername ILIKE '%${genresearch}%';
+            `)
+        return rows
+    
+}
 async function getAllGenersNames(){
     const {rows} = await pool.query(`
         SELECT * FROM genres
@@ -62,6 +71,7 @@ async function deleteGenre(genreid){
 module.exports = {  
     getAllGeners,
     getSingleGener,
+    getSearchedGenres,
     getAllGenersNames,
     insertNewGenre,
     editExistingGenreForm,

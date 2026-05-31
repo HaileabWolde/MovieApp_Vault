@@ -14,6 +14,20 @@ async function getAllMovies(req, res){
   })
 }
 
+async function getSearchedMovies(req, res){
+ const { moviesearch } = req.query;   // ← Correct
+  const movies = await db.searchMovies(moviesearch)
+  const directors = await  db.getALLMoviesWithDirectors()
+  const genres = await db.getAllMoviesWithGeneres()
+  
+  res.render('index', { 
+    title: 'Mini Messageboard',
+    movies: movies,
+    directors: directors,
+    genres: genres
+  })
+
+}
 
 
 async function getSingleMovie(req, res){
@@ -35,4 +49,5 @@ async function getSingleMovie(req, res){
 module.exports = {
   getAllMovies,
   getSingleMovie,
+  getSearchedMovies
 };

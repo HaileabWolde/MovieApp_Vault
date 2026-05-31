@@ -7,7 +7,16 @@ async function getAllGeners(req, res){
     geners: geners
   })
 }
+async function getSearchedGeners(req, res){
+  const {genresearch} = req.query
 
+  const geners = await db.getSearchedGenres(genresearch)
+
+   res.render('geners/gener', {
+    title: 'Mini Messageboard',
+    geners: geners
+  })
+}
 
 async function getSingleGener(req, res){
   const generid = req.params.id
@@ -99,6 +108,7 @@ async function deleteGenre(req, res){
 module.exports = {
 getAllGeners,
 getSingleGener,
+getSearchedGeners,
 getGenreForm,
 insertGenreForm,
 editExistingGenre,
