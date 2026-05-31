@@ -81,7 +81,9 @@
                     
                  </div>
                  <div class="bg-white  shadow-xl rounded-xl border-2 flex flex-col gap-2 justify-between cursor-pointer">
-                         <%director.map((eachdirector)=> {
+                    <% if(director && director.length > 0) {
+                        %>
+                             <%director.map((eachdirector)=> {
                         %>
                             <div class="flex justify-between border-b-2 px-4 py-4 items-center">
                                 <a  href="/director/<%=eachdirector.directorname%>/<%=eachdirector.directorid%>">
@@ -105,6 +107,19 @@
                      </div>
              <%
                 })%>
+                        <%
+                    }
+                    else {
+                        %>
+                        <div class="flex items-center justify-center p-8">
+      
+        <h1 class="text-xl text-gray-400">No Directors Found In This Name</h1>
+     
+      </div>
+                        <%
+                    }
+                    %>
+                        
                  </div>
         </div>
     </div>

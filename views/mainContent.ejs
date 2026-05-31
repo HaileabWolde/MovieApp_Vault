@@ -51,7 +51,9 @@
                                  </tr>
                         </thead>
                            <tbody class="">
-                                <% movies.map((movie)=> {
+                            <% if (movies && movies.length > 0)  
+                            {%>
+                                 <% movies.map((movie)=> {
                                    %>
                                    <tr class="bg-gray-50 border-b cursor-pointer">
                                         <td class="px-6 py-3 flex gap-4">
@@ -125,7 +127,19 @@
                         
                              <%
                             }) %>
-                                
+
+                            <%}
+                            else {
+                                %>
+                                    <tr>
+      <td colspan="3" class="px-6 py-8 text-center">
+        <h1 class="text-xl text-gray-400">No Movies Found</h1>
+      </td>
+                                <%
+                            }
+                             
+                               %>
+                               
                            </tbody>
                             
                     </table>

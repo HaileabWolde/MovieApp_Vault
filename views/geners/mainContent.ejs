@@ -36,7 +36,9 @@
            
     </div>
     <div class="bg-white  shadow-xl rounded-xl border-2 flex flex-col gap-2 justify-between cursor-pointer">
-        <%geners.map((gener)=> {
+        <% if (geners && geners.length > 0){
+            %>
+                 <%geners.map((gener)=> {
             %>
             <div class="flex justify-between border-b-2 px-4 py-4 items-center">
                 <a  href="/geners/<%=gener.genername%>/<%= gener.genreid%>">
@@ -60,5 +62,17 @@
             </div>
             <%
         })%>
+            <%
+        }
+        else {
+            %>
+            <div class="flex items-center justify-center p-8">
+      
+        <h1 class="text-xl text-gray-400">No Geners Found In This Name</h1>
+     
+      </div>
+            <%
+        }%>
+       
     </div>
 </div>
