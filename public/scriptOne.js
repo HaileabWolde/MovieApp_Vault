@@ -33,9 +33,3 @@ cancelButton.addEventListener('click', ()=> {
     
 })
 
-const deleteMovie = (event)=>{
-       event.preventDefault();
-       mydialogform.submit();
-}
-
-mydialogform.addEventListener('submit', deleteMovie);
