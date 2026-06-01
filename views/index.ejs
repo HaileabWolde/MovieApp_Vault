@@ -26,11 +26,12 @@
         
         <!-- Body -->
         <form
-         method="POST" 
+         method="GET" 
         action="/movie/delete"
         id="mydialogform"
         class="p-8 text-center flex justify-between">
          <input type="hidden" name="movieid" id="movieIdInput" value="">
+          <input type="hidden" name="type" id="movieTypeInput" value="movies">
             <button 
                    type="submit">Delete</button>
             <button

@@ -22,6 +22,13 @@ const indexRouter = Router();
 indexRouter.get('/movies', getAllMovies)
 indexRouter.get('/movies/add', addMovieForm)
 indexRouter.get('/movies/search', getSearchedMovies)
+indexRouter.get('/movie/delete', (req, res)=> {
+    const {movieid, type} = req.query
+  res.render('Authentication/Authentication', {
+    id: movieid,
+    type: type
+  })
+})
 indexRouter.get('/movies/edit/:id', editMovieForm)
 indexRouter.get('/movies/:id', getSingleMovie)
 
@@ -49,7 +56,7 @@ indexRouter.get('/editgenre/:id',  editExistingGenre)
 // POST ROUTES FOR MOVIES
 indexRouter.post('/movie/newMovie', insertNewMovie)
 indexRouter.post('/movie/editMovie/:id', editMovie)
-indexRouter.post('/movie/delete', deleteMovie)
+indexRouter.post('/movie/delete',  deleteMovie)
 
 
 // POST ROUTES FOR DIRECTORS
