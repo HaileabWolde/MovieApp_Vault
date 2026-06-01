@@ -18,6 +18,7 @@ async function addNewDirector(req, res) {
                     return res.render('Form/addDirectorForm', {
                         title: 'Add New Director',
                         error: `${directorname} already exists!`,
+                           singleDirector: null
     
                     });
                 }

@@ -53,6 +53,7 @@ async function insertGenreForm(req, res){
                     return res.render('Form/addGenreForm', {
                         title: 'Add New Genre',
                         error: `${genrename} genre already exists!`,
+                        singleGenre: null
     
                     });
                 }
