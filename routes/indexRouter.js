@@ -17,6 +17,8 @@ const {editMovieForm, editMovie, deleteMovie}  = require("../controllers/editMov
 const {addNewDirector, editExistingDirector, editDirector} = require("../controllers/addDirectoryQuery")
 
 const {Authentication} = require("../controllers/authentication")
+
+const {authController} = require("../authController/authController")
 const indexRouter = Router();
 
 
@@ -75,6 +77,6 @@ indexRouter.post('/genre/delete',   deleteGenre)
 
 
 // POST ROUTES FOR AUTHETNICATION
-indexRouter.post('/auth/check', Authentication, deleteMovie)
+indexRouter.post('/auth/check', Authentication, authController)
 
 module.exports = indexRouter;

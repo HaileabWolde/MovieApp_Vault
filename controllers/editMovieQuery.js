@@ -49,14 +49,12 @@ async function editMovie(req, res){
 
 }
 
-async function deleteMovie(req, res){
+async function deleteMovie(movieid){
   
-     const movieid = req.body.id;
     
-  
    try{
         await db.deleteSingleMovie(movieid)
-       res.redirect('/movies'); // ← THIS WAS MISSING
+     
    }
    catch(error){
       console.error("Insert Movie Error:", error);
