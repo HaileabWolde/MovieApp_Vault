@@ -50,7 +50,9 @@ async function editMovie(req, res){
 }
 
 async function deleteMovie(req, res){
-     const movieid = req.body.movieid;
+  
+     const movieid = req.body.id;
+    
   
    try{
         await db.deleteSingleMovie(movieid)

@@ -15,6 +15,8 @@ const {addMovieForm, insertNewMovie} = require("../controllers/addMovieQuery")
 const {editMovieForm, editMovie, deleteMovie}  = require("../controllers/editMovieQuery")
 
 const {addNewDirector, editExistingDirector, editDirector} = require("../controllers/addDirectoryQuery")
+
+const {Authentication} = require("../controllers/authentication")
 const indexRouter = Router();
 
 
@@ -23,9 +25,9 @@ indexRouter.get('/movies', getAllMovies)
 indexRouter.get('/movies/add', addMovieForm)
 indexRouter.get('/movies/search', getSearchedMovies)
 indexRouter.get('/movie/delete', (req, res)=> {
-    const {movieid, type} = req.query
+    const {id, type} = req.query
   res.render('Authentication/Authentication', {
-    id: movieid,
+    id: id,
     type: type
   })
 })
@@ -72,6 +74,7 @@ indexRouter.post('/editgenre/:id', editSingleGenre)
 indexRouter.post('/genre/delete',   deleteGenre)
 
 
-
+// POST ROUTES FOR AUTHETNICATION
+indexRouter.post('/auth/check', Authentication, deleteMovie)
 
 module.exports = indexRouter;
