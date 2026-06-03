@@ -41,11 +41,11 @@ async function addDirectorForm(req, res){
     }
    )
 }
-async function deleteDirector(req, res){
-  const {directorid} = req.body;
+async function deleteDirector(directorid){
+  
   try{
     await db.deleteSingleDirector(directorid)
-    res.redirect('/directors')
+   
   }
   catch(error){
     console.log('Error', error)

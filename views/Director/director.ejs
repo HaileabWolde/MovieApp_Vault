@@ -25,11 +25,12 @@
         
         <!-- Body -->
         <form
-         method="POST" 
+         method="GET" 
         action="/director/delete"
         id="mydialogform"
         class="p-8 text-center flex justify-between">
          <input type="hidden" name="directorid" id="directorIdInput" value="">
+            <input type="hidden" name="type" id="directorTypeInput" value="directors">
             <button 
                    type="submit">Delete</button>
             <button

@@ -1,8 +1,11 @@
 const {deleteMovie, editMovieForm} = require("../controllers/editMovieQuery")
+const {deleteDirector} = require("../controllers/directorQuery")
+
+
 async function  authController(req, res){
    
     const {id, type} = req.body
-
+   
     if(type === 'movies'){
         deleteMovie(id)
           res.redirect('/movies'); // ← THIS WAS MISSING
@@ -18,6 +21,11 @@ async function  authController(req, res){
         error: null,        // ← Important
        FormData: FormData
       })
+    }
+    if(type == "directors"){
+        
+        await  deleteDirector(id)
+         res.redirect('/directors')
     }
     else {
         console.log('Fuck off')

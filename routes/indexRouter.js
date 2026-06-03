@@ -9,7 +9,7 @@ const {getAllGeners, getSingleGener,
     deleteGenre, getSearchedGeners
  } = require("../controllers/genersQuery")
 const {getALLDirector, getDirectorMovies, 
-    addDirectorForm, deleteDirector, getSearchedDirector} = require("../controllers/directorQuery")
+    addDirectorForm, getSearchedDirector} = require("../controllers/directorQuery")
 const {addMovieForm, insertNewMovie} = require("../controllers/addMovieQuery")
 
 const {editMovie}  = require("../controllers/editMovieQuery")
@@ -53,6 +53,14 @@ indexRouter.get('/movies/:id', getSingleMovie)
 indexRouter.get('/directors/add', addDirectorForm)
 indexRouter.get('/directors', getALLDirector)
 indexRouter.get('/director/search', getSearchedDirector)
+indexRouter.get('/director/delete', (req, res)=> {
+   const {directorid, type} = req.query
+  
+  res.render('Authentication/Authentication', {
+    id: directorid,
+    type: type
+  })
+})
 indexRouter.get('/director/:directorname/:id', getDirectorMovies)
 indexRouter.get('/editdirector/:id', editExistingDirector)
 
@@ -76,7 +84,7 @@ indexRouter.post('/movie/editMovie/:id', editMovie)
 // POST ROUTES FOR DIRECTORS
 indexRouter.post('/director/add', addNewDirector)
 indexRouter.post('/director/editdirector/:id', editDirector)
-indexRouter.post('/director/delete', deleteDirector)
+
 
 
 // POST ROUTES FOR GENRES
