@@ -63,18 +63,14 @@ async function insertGenreForm(req, res){
 
 }
 
-async function editExistingGenre(req, res){
-  const {id} = req.params
-
-
+async function editExistingGenre(id){
+  
   try{
     const singleGenre = await db.editExistingGenreForm(id)
-    console.log(singleGenre[0])
-    res.render("Form/addGenreForm", {
-    title: 'Mini Messageboard',
-    error: null,
-    singleGenre: singleGenre
-  })
+    return {
+      singleGenre
+    }
+    
   }
   catch(error){
     console.log("Error", error)

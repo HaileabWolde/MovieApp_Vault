@@ -5,7 +5,7 @@ const { getAllMovies,
 
 const {getAllGeners, getSingleGener, 
     getGenreForm, insertGenreForm,
-    editExistingGenre, editSingleGenre,
+    editSingleGenre,
    getSearchedGeners
  } = require("../controllers/genersQuery")
 const {getALLDirector, getDirectorMovies, 
@@ -90,7 +90,19 @@ indexRouter.get('/genre/delete', (req, res)=>{
 })
 indexRouter.get('/geners/:genername/:id', getSingleGener)
 indexRouter.get('/genres/add', getGenreForm)
-indexRouter.get('/editgenre/:id',  editExistingGenre)
+
+indexRouter.get('/editgenre/:id', (req, res)=> {
+  const {type} = req.query
+  const {id} = req.params
+
+
+  res.render('Authentication/Authentication', {
+    id: id,
+    type: type
+  })
+})
+/*
+indexRouter.get('/editgenre/:id',  editExistingGenre)*/
 
 
 

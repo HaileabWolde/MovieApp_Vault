@@ -1,7 +1,7 @@
 const {deleteMovie, editMovieForm} = require("../controllers/editMovieQuery")
 const {deleteDirector} = require("../controllers/directorQuery")
 const { editExistingDirector} = require("../controllers/addDirectoryQuery")
-const {deleteGenre} = require("../controllers/genersQuery")
+const {deleteGenre,  editExistingGenre} = require("../controllers/genersQuery")
 async function  authController(req, res){
    
     const {id, type} = req.body
@@ -40,6 +40,15 @@ async function  authController(req, res){
     if(type == "genres"){
         await deleteGenre(id)
          res.redirect('/geners')
+    }
+    if(type == "editgenre"){
+        const {singleGenre} = await editExistingGenre(id)
+        
+        res.render("Form/addGenreForm", {
+    title: 'Mini Messageboard',
+    error: null,
+    singleGenre: singleGenre
+  })
     }
     else {
         console.log('Fuck off')
