@@ -12,7 +12,7 @@ const {getALLDirector, getDirectorMovies,
     addDirectorForm, deleteDirector, getSearchedDirector} = require("../controllers/directorQuery")
 const {addMovieForm, insertNewMovie} = require("../controllers/addMovieQuery")
 
-const {editMovieForm, editMovie, deleteMovie}  = require("../controllers/editMovieQuery")
+const {editMovie}  = require("../controllers/editMovieQuery")
 
 const {addNewDirector, editExistingDirector, editDirector} = require("../controllers/addDirectoryQuery")
 
@@ -33,7 +33,18 @@ indexRouter.get('/movie/delete', (req, res)=> {
     type: type
   })
 })
-indexRouter.get('/movies/edit/:id', editMovieForm)
+
+indexRouter.get('/movies/edit/:id', (req, res)=>{
+  const {type} = req.query
+  const {id} = req.params
+
+
+  res.render('Authentication/Authentication', {
+    id: id,
+    type: type
+  })
+})
+
 indexRouter.get('/movies/:id', getSingleMovie)
 
 
@@ -60,7 +71,6 @@ indexRouter.get('/editgenre/:id',  editExistingGenre)
 // POST ROUTES FOR MOVIES
 indexRouter.post('/movie/newMovie', insertNewMovie)
 indexRouter.post('/movie/editMovie/:id', editMovie)
-indexRouter.post('/movie/delete',  deleteMovie)
 
 
 // POST ROUTES FOR DIRECTORS

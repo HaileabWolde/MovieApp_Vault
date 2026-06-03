@@ -2,9 +2,9 @@ const db = require('../db/queries')
 const dbOne = require('../db/genersQueries')
 const dbTwo = require("../db/directorQueries")
 
-async function editMovieForm(req, res){
+async function editMovieForm(movieid){
 
-    const movieid = req.params.id
+   // const movieid = req.params.id
       const singleMovie = await db.getSpecficMovies(movieid);
       const categories = await db.getAllGenersIdOfSingleMovie(movieid);
       const directors = await db.getAllDirectorsIdofSingleMovie(movieid);
@@ -22,14 +22,11 @@ const genersArray = categories.map(obj=> Number(obj.genreid))
       //all Directors and Geners
       const allDirectors = await dbTwo.allDirectorsNames();
        const allGeners = await dbOne.getAllGenersNames();
-    
-      res.render("Form/addMovieForm", {
-        title: 'Mini Messageboard',
-         allDirectors: allDirectors,
-        allGeners: allGeners,
-        error: null,        // ← Important
-       FormData: FormData
-      })
+   
+       return {
+         allDirectors, allGeners, FormData
+       }
+     
 }
 
 async function editMovie(req, res){

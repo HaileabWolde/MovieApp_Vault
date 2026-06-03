@@ -65,8 +65,8 @@
                                             <a href="/movies/<%=movie.movieid%>">
                                                 <img src="<%= movie.imageurl %>" 
                                                  alt=""
-                                                width="80" 
-                                                 height="80"
+                                                width="180" 
+                                                 height="180"
                                                     onerror="this.style.display='none';"
                                                 style="object-fit: cover; border-radius: 8px;">
                                                 <div class="flex flex-col justify-center">
@@ -106,7 +106,7 @@
                                           
                                             <div class=" flex gap-4 items-center justify-center w-[50%]">
                                                 <a
-                                                 href="/movies/edit/<%=movie.movieid%>"
+                                                 href="/movies/edit/<%=movie.movieid%>?type=editmovies"
                                                 class="text-gray-500">
                                                          <i
                                                      
