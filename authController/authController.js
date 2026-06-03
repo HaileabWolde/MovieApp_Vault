@@ -1,8 +1,7 @@
 const {deleteMovie, editMovieForm} = require("../controllers/editMovieQuery")
 const {deleteDirector} = require("../controllers/directorQuery")
 const { editExistingDirector} = require("../controllers/addDirectoryQuery")
-
-
+const {deleteGenre} = require("../controllers/genersQuery")
 async function  authController(req, res){
    
     const {id, type} = req.body
@@ -37,6 +36,10 @@ async function  authController(req, res){
            error: null,    // ← Important
 
         })
+    }
+    if(type == "genres"){
+        await deleteGenre(id)
+         res.redirect('/geners')
     }
     else {
         console.log('Fuck off')

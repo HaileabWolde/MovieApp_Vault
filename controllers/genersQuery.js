@@ -96,11 +96,11 @@ async function editSingleGenre(req, res){
   }
 }
 
-async function deleteGenre(req, res){
-  const {genreid} = req.body;
+async function deleteGenre(genreid){
+  
   try{
     await db.deleteGenre(genreid)
-    res.redirect('/geners')
+   
   }
   catch(error){
     console.log('Error', error)

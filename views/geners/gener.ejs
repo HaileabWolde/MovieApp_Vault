@@ -25,11 +25,12 @@
         
         <!-- Body -->
         <form
-         method="POST" 
+         method="GET" 
         action="/genre/delete"
         id="mydialogform"
         class="p-8 text-center flex justify-between">
          <input type="hidden" name="genreid" id="genreIdInput" value="">
+          <input type="hidden" name="type" id="genreTypeInput" value="genres">
             <button 
                    type="submit">Delete</button>
             <button
