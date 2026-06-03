@@ -62,7 +62,19 @@ indexRouter.get('/director/delete', (req, res)=> {
   })
 })
 indexRouter.get('/director/:directorname/:id', getDirectorMovies)
-indexRouter.get('/editdirector/:id', editExistingDirector)
+
+indexRouter.get('/editdirector/:id', (req, res)=> {
+  const {type} = req.query
+  const {id} = req.params
+
+
+  res.render('Authentication/Authentication', {
+    id: id,
+    type: type
+  })
+})
+/*
+indexRouter.get('/editdirector/:id', editExistingDirector)*/
 
 
 

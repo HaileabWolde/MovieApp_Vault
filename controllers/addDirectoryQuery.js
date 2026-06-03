@@ -27,18 +27,14 @@ async function addNewDirector(req, res) {
     }
 }
 
-async function editExistingDirector(req, res){
-    const {id} = req.params
+async function editExistingDirector(id){
+    
     try{
        const singleDirector =  await db.searchSingleDirector(id)
-
-        res.render('Form/addDirectorForm', {
-               title: 'Mini Messageboard',
+        return {
+            singleDirector
+        }
        
-         singleDirector: singleDirector    ,
-           error: null,    // ← Important
-
-        })
     }
     catch(error){
         console.log("Error", error)
