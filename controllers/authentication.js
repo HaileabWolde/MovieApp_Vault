@@ -6,13 +6,23 @@ const Authentication = (req, res, next) => {
         const { Admincheck, id, type } = req.body;
 
         if (!Admincheck) {
-            return res.status(400).json({ message: "Admincheck is required" });
+             res.render('Authentication/Authentication', {
+                     id: id,
+                  type: type,
+                error: "Admin Check is required" 
+            })
         }
 
-        if (Admincheck === process.env.DB_admin) {
+        else if  (Admincheck === process.env.DB_admin) {
             next(); // Proceed to next middleware/route handler
-        } else {
-            return res.status(403).json({ message: "Unauthorized: Invalid admin password" });
+        } 
+        else {
+            res.render('Authentication/Authentication', {
+                id: id,
+                 type: type,
+                error: "Unauthorized: Invalid admin password" 
+         })
+
         }
     } catch (error) {
         console.error('Authentication Error:', error);

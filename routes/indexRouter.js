@@ -30,7 +30,8 @@ indexRouter.get('/movie/delete', (req, res)=> {
     const {id, type} = req.query
   res.render('Authentication/Authentication', {
     id: id,
-    type: type
+    type: type,
+    error: null,
   })
 })
 
@@ -41,7 +42,8 @@ indexRouter.get('/movies/edit/:id', (req, res)=>{
 
   res.render('Authentication/Authentication', {
     id: id,
-    type: type
+    type: type,
+    error: null,
   })
 })
 
@@ -58,7 +60,8 @@ indexRouter.get('/director/delete', (req, res)=> {
   
   res.render('Authentication/Authentication', {
     id: directorid,
-    type: type
+    type: type,
+    error: null
   })
 })
 indexRouter.get('/director/:directorname/:id', getDirectorMovies)
@@ -70,7 +73,8 @@ indexRouter.get('/editdirector/:id', (req, res)=> {
 
   res.render('Authentication/Authentication', {
     id: id,
-    type: type
+    type: type,
+    error: null
   })
 })
 
@@ -85,7 +89,8 @@ indexRouter.get('/genre/delete', (req, res)=>{
   
   res.render('Authentication/Authentication', {
     id: genreid,
-    type: type
+    type: type,
+    error: null
   })
 })
 indexRouter.get('/geners/:genername/:id', getSingleGener)
@@ -98,11 +103,11 @@ indexRouter.get('/editgenre/:id', (req, res)=> {
 
   res.render('Authentication/Authentication', {
     id: id,
-    type: type
+    type: type,
+    error: null
   })
 })
-/*
-indexRouter.get('/editgenre/:id',  editExistingGenre)*/
+
 
 
 
