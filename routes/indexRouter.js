@@ -22,6 +22,9 @@ const {authController} = require("../authController/authController")
 const indexRouter = Router();
 
 
+indexRouter.get('/', (req, res)=> {
+  res.render('Home/HomePage')
+})
 // GET routes - For Movies
 indexRouter.get('/movies', getAllMovies)
 indexRouter.get('/movies/add', addMovieForm)
