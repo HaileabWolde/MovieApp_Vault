@@ -9,15 +9,30 @@
     
     <title>MovieVault - Home</title>
 </head>
-<body>
+<body class="relative">
 <div class="grid grid-cols-1 md:grid-cols-[20%_80%] h-screen w-full">
     <!-- Sidebar -->
     <%- include('../sideBar') %>
 
     <!-- Main Content -->
-    <div class="bg-zinc-100 overflow-auto p-8 flex flex-col gap-8">
+    <div class="bg-zinc-100 overflow-auto p-8 flex flex-col  md:gap-8">
+        <header class="fixed top-0 left-0 right-0 bg-white shadow-lg rounded-xl p-4 flex justify-between  md:hidden">
+            <h1 class="text-2xl font-bold text-blue-950 leading-tight">Movie Vault</h1>
+            <button
+            id="menu-btn"
+            >
+            <i
+            class="fa-solid fa-bars text-lg"
+            ></i>
+            </button>
+        </header>
+       <aside 
+    id="mobilesideBar"
+    class="flex flex-col gap-4 absolute p-4 top-0 left-0 h-screen z-20 bg-white w-72 shadow-2xl border-l-2 border-solid border-blue-500 -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+    <h1>fuck</h1>
+</aside>
         <!-- Welcome Card -->
-        <div class="bg-white shadow-lg rounded-xl border border-gray-200 pt-8 pb-12 px-6 flex flex-col md:flex-row gap-10 items-center">
+        <div class="mt-12 md:mt-0 bg-white shadow-lg rounded-xl border border-gray-200 pt-8 pb-12 px-6 flex flex-col md:flex-row gap-10 items-center">
             
             <!-- Left Side - Text -->
             <div class="flex-1">
@@ -93,5 +108,12 @@
         </div>
     </div>
 </div>
+<script src="/home.js"></script>
 </body>
 </html>
+
+<aside 
+    id="mobilesideBar"
+    class="flex flex-col gap-4 absolute p-4 top-0 left-0 h-screen z-20 bg-white w-72 shadow-2xl border-l-2 border-solid border-blue-500 -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+    <h1>fuck</h1>
+</aside>
