@@ -19,12 +19,12 @@ const {addNewDirector, editDirector} = require("../controllers/addDirectoryQuery
 const {Authentication} = require("../controllers/authentication")
 
 const {authController} = require("../authController/authController")
+
+const {homePage} = require("../controllers/homePage")
 const indexRouter = Router();
 
 
-indexRouter.get('/', (req, res)=> {
-  res.render('Home/HomePage')
-})
+indexRouter.get('/', homePage)
 // GET routes - For Movies
 indexRouter.get('/movies', getAllMovies)
 indexRouter.get('/movies/add', addMovieForm)
