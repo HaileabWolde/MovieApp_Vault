@@ -45,13 +45,26 @@
       
     </dialog>
 </div>
-    <div class="grid grid-cols-[20%_80%] h-screen w-full">
+    <div class="grid grid-cols-1 md:grid-cols-[30%_70%] lg:grid-cols-[20%_80%] h-screen w-full">
+        
         <!-- Sidebar -->
        <%- include('sideBar') %>
 
         <div class="bg-zinc-100 overflow-auto pt-4 px-12 pb-2 flex  flex-col gap-8">
-            <div class="bg-white shadow-xl rounded-xl p-12 border-2 h-full flex flex-col justify-around">
-                <div class="flex justify-between ">
+            <header 
+    class="fixed top-0 left-0 right-0 bg-white shadow-lg rounded-xl p-4 flex justify-between  md:hidden">
+            <h1 class="text-2xl font-bold text-blue-950 leading-tight">Movie Vault</h1>
+            <button
+            id="menu-btn"
+            >
+            <i
+            class="fa-solid fa-bars text-lg"
+            ></i>
+            </button>
+        </header>
+          <%-include('./aside/aside') %>
+            <div class="mt-14 sm:mt-0 bg-white shadow-xl rounded-xl p-8 lg:p-12 border-2  flex flex-col justify-around">
+                <div class="flex flex-col gap-4 sm:gap-0 sm:flex-row justify-between mb-4 ">
                     <div>
                          <% singleMovie.map((movie)=>{
                     %>
@@ -65,7 +78,7 @@
                     <%
                 })%>
                     </div>
-                    <div class=" flex gap-4 items-center justify-center">
+                    <div class=" flex  gap-4 items-center justify-end sm:justify-center">
                             <%singleMovie.map((movie)=> {
                                     %>
                                     <a 
@@ -87,7 +100,7 @@
                                                  
                     </div>
                 </div>
-               <div class="flex gap-4 items-center justify-between">
+               <div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
                     <%singleMovie.map((movie)=> {
                         %>
                         <img src="<%= movie.imageurl %>" 

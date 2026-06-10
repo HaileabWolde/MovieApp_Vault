@@ -10,10 +10,21 @@
     <title>Inventory Application</title>
 </head>
 <body class="m-0">
-    <div class="grid grid-cols-[20%_80%] h-screen w-full">
+    <div class="grid grid-cols-1 md:grid-cols-[30%_70%] lg:grid-cols-[20%_80%] h-screen w-full">
         <%- include('../../sideBar') %>
         <div class="bg-zinc-100 overflow-auto pt-8 px-4 pb-2 flex flex-col gap-8 min-h-screen">
-                 <div class="bg-white pb-8 shadow-xl rounded-xl  border-2 flex flex-col gap-8 justify-center py-8 px-3 ">
+              <header class="fixed top-0 left-0 right-0 bg-white shadow-lg rounded-xl p-4 flex justify-between  md:hidden">
+            <h1 class="text-2xl font-bold text-blue-950 leading-tight">Movie Vault</h1>
+            <button
+            id="menu-btn"
+            >
+            <i
+            class="fa-solid fa-bars text-lg"
+            ></i>
+            </button>
+        </header>
+        <%-include('../../aside/aside') %>
+                 <div class="mt-14 sm:mt-0 bg-white pb-8 shadow-xl rounded-xl  border-2 flex flex-col gap-8 justify-center py-8 px-3 ">
                         <h1 class="text-3xl font-bold"><%=directorname%></h1>
                         <p class="text-gray-500">Movies In This Category</p>
                         <div class="flex  gap-8 flex-wrap justify-center ">
@@ -48,6 +59,6 @@
                
         </div>
     </div>
-    
+    <script  src="/director.js"></script>
 </body>
 </html>

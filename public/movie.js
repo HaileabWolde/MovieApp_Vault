@@ -8,7 +8,12 @@ const cancelButton = document.getElementById('cancelButton')
 const deleteMovieButton = document.getElementById('deleteMovieButton'); 
 const movieIdInput = document.getElementById('movieIdInput');
 
+const menuBtn = document.getElementById('menu-btn');
+const mobilesideBar = document.getElementById('mobilesideBar');
 
+menuBtn.addEventListener('click', () => {
+    mobilesideBar.classList.toggle('-translate-x-full');
+});
 deleteMovieButton.addEventListener('click', (e)=> {
     e.stopPropagation();
 
