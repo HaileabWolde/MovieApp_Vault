@@ -1,5 +1,12 @@
 const mydialogform = document.getElementById('mydialogform')
+const menuBtn = document.getElementById('menu-btn');
+const mobilesideBar = document.getElementById('mobilesideBar');
 
+
+
+menuBtn.addEventListener('click', () => {
+    mobilesideBar.classList.toggle('-translate-x-full');
+});
 
 //dialgo Showing Logic 
 

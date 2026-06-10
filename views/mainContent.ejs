@@ -1,15 +1,26 @@
   <!-- Main Content -->
         <div class="bg-zinc-100 overflow-auto pt-4 px-4 pb-2 flex  flex-col gap-8">
-                <div class="bg-white pb-8 shadow-xl rounded-xl flex justify-between  border-2  py-8 px-3">
+             <header class="fixed top-0 left-0 right-0 bg-white shadow-lg rounded-xl p-4 flex justify-between  md:hidden">
+            <h1 class="text-2xl font-bold text-blue-950 leading-tight">Movie Vault</h1>
+            <button
+            id="menu-btn"
+            >
+            <i
+            class="fa-solid fa-bars text-lg"
+            ></i>
+            </button>
+        </header>
+        <%-include('./aside/aside') %>
+                <div class="mt-14 md:mt-0 bg-white pb-8 shadow-xl rounded-xl flex flex-col gap-4  sm:flex-row justify-between  border-2  py-8 px-3">
                     <span>
                          <h1 class="text-3xl font-bold ">Movies</h1>
                         <p class="text-gray-500">Showing <%=movies.length%> Movies</p>
                     </span>
-                    <div class="flex gap-4">
+                    <div class="flex flex-col  sm:flex-row gap-4">
                                 <form
                                 method="GET"
                                 action = "/movies/search"
-                                class="flex"
+                                class="flex w-[50%] "
                                 >
                                       <input 
                                     type="text" 
@@ -27,7 +38,7 @@
                                 </form>
                                
                                 <a
-                                 class="flex items-center bg-blue-500 px-4  gap-4 rounded-xl" 
+                                 class="flex justify-center w-[50%] py-2 px-2 items-center bg-blue-500 sm:px-4  gap-4 rounded-xl " 
                                   href="/movies/add">
                                  <i
                           
