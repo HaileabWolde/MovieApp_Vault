@@ -11,6 +11,13 @@ const cancelButton = document.getElementById('cancelButton')
 
 const regex = /^[A-Za-z\s]+$/;
 
+//mobile responsivness
+const menuBtn = document.getElementById('menu-btn');
+const mobilesideBar = document.getElementById('mobilesideBar');
+
+menuBtn.addEventListener('click', () => {
+    mobilesideBar.classList.toggle('-translate-x-full');
+});
 
 // Open dialog when delete button is clicked
     deleteButtons.forEach(button => {

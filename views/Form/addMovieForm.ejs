@@ -35,12 +35,24 @@
         </div>
     </div>
 </div>
-    <div class="grid grid-cols-[20%_80%] h-screen w-full">
+    <div class="grid grid-cols-1 md:grid-cols-[30%+70%] lg:grid-cols-[20%_80%] h-screen w-full">
         <!-- Sidebar -->
         <%- include('../sideBar') %>
 
         <div class="bg-zinc-100 overflow-auto pt-10 px-6 pb-8">
-            <div class="max-w-4xl mx-auto">
+             <header 
+    class="fixed top-0 left-0 right-0 bg-white shadow-lg rounded-xl p-4 flex justify-between  md:hidden">
+            <h1 class="text-2xl font-bold text-blue-950 leading-tight">Movie Vault</h1>
+            <button
+            id="menu-btn"
+            >
+            <i
+            class="fa-solid fa-bars text-lg"
+            ></i>
+            </button>
+        </header>
+         <%-include('../aside/aside') %>
+            <div class="max-w-4xl mx-auto mt-14 sm:mt-0">
                 <div class="bg-white shadow-2xl rounded-3xl p-10 border border-zinc-200 ">
                     
                     <div class="flex items-center gap-3 mb-10">

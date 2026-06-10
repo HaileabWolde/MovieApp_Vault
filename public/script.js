@@ -15,7 +15,13 @@ const movienameError = document.getElementById('movienameError');
 const ratingError = document.getElementById('ratingError');
 
 
+//mobile responsivness
+const menuBtn = document.getElementById('menu-btn');
+const mobilesideBar = document.getElementById('mobilesideBar');
 
+menuBtn.addEventListener('click', () => {
+    mobilesideBar.classList.toggle('-translate-x-full');
+});
 
 const validateForm = (event) => {
     event.preventDefault();
