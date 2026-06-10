@@ -42,7 +42,7 @@ indexRouter.get('/movies/edit/:id', (req, res)=>{
   const {type} = req.query
   const {id} = req.params
 
-
+ console.log(type, id)
   res.render('Authentication/Authentication', {
     id: id,
     type: type,

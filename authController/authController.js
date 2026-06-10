@@ -10,7 +10,7 @@ async function  authController(req, res){
         deleteMovie(id)
           res.redirect('/movies'); // ← THIS WAS MISSING
     }
-    if(type == 'editmovies'){
+    else if(type == 'editmovies'){
       const {allDirectors, allGeners, FormData}  = await editMovieForm(id)
         
 
@@ -22,12 +22,12 @@ async function  authController(req, res){
        FormData: FormData
       })
     }
-    if(type == "directors"){
+   else if(type == "directors"){
         
         await  deleteDirector(id)
          res.redirect('/directors')
     }
-    if(type == "editdirector"){
+    else if(type == "editdirector"){
         const {singleDirector} = await editExistingDirector(id)
          res.render('Form/addDirectorForm', {
                title: 'Mini Messageboard',
@@ -37,11 +37,11 @@ async function  authController(req, res){
 
         })
     }
-    if(type == "genres"){
+   else  if(type == "genres"){
         await deleteGenre(id)
          res.redirect('/geners')
     }
-    if(type == "editgenre"){
+   else  if(type == "editgenre"){
         const {singleGenre} = await editExistingGenre(id)
         
         res.render("Form/addGenreForm", {
