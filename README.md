@@ -12,16 +12,16 @@ I built this as part of [The Odin Project](https://www.theodinproject.com/) inve
 ![Dashboard](screenshots/Screenshot_One.png)
 
 ### Movies List
-![Movies](screenshots/Screenshot_Four.png)
+![Movies](screenshots/Screenshot_Two.png)
 
 ### Movie Detail Page
-![Single Movie](screenshots/Screenshot_Five.png)
+![Single Movie](screenshots/Sreenshot_Three.png)
 
 ### Add New Movie
-![Add Movie](screenshots/Screenshot_Two.png)
+![Add Movie](screenshots/Screenshot_Four.png)
 
 ### Delete Confirmation
-![Delete Modal](screenshots/Screenshot_Three.png)
+![Delete Modal](screenshots/Screenshot_Five.png)
 
 ---
 
